@@ -1,0 +1,2 @@
+model_checkpoint_path: "/home/ayman/python_chat_bot/model.tflearn"
+all_model_checkpoint_paths: "/home/ayman/python_chat_bot/model.tflearn"
