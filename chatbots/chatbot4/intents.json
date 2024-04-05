@@ -1,0 +1,44 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi",
+        "Is anyone there?",
+        "Hello",
+        "Good day",
+        "hi",
+        "heya",
+        "heeeey"
+      ],
+      "responses": [
+        "Hello, thanks for visiting",
+        "Good to see you again",
+        "Hi there, how can I help?",
+        "hello there",
+        "hello beautiful"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": ["Bye", "See you later", "Goodbye"],
+      "responses": [
+        "See you later, thanks for visiting",
+        "Have a nice day",
+        "Bye! Come back again soon."
+      ]
+    },
+    {
+      "tag": "workspace2",
+      "patterns": ["workspace2", "go to w2", "workspace22"],
+      "responses": ["Happy to help!", "Any time!", "My pleasure"],
+      "command": ["hyprctl", "dispatch", "workspace 2"]
+    },
+    {
+      "tag": "workspace3",
+      "patterns": ["w 3", "workspace3", "w3"],
+      "responses": ["sure", "alright"],
+      "command": ["hyprctl", "dispatch", "workspace 3"]
+    }
+  ]
+}
