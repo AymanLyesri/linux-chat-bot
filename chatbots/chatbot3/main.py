@@ -1,7 +1,9 @@
 import random
 import json
 import subprocess
-import difflib
+from difflib import SequenceMatcher
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
 
 # Load the intents from the JSON file
 
@@ -23,21 +25,35 @@ def save_intents(intents):
 def get_response(intents, input_text):
     max_similarity = 0
     closest_match = None
+    input_tokens = [word for word in word_tokenize(
+        input_text.lower()) if word not in stopwords.words('english')]
     for intent in intents['intents']:
         for pattern in intent['patterns']:
-            similarity = difflib.SequenceMatcher(
-                None, input_text.lower(), pattern.lower()).ratio()
+            pattern_tokens = [word for word in word_tokenize(
+                pattern.lower()) if word not in stopwords.words('english')]
+            similarity = SequenceMatcher(
+                None, input_tokens, pattern_tokens).ratio()
             if similarity > max_similarity:
                 max_similarity = similarity
                 closest_match = intent
-    # print(closest_match, max_similarity)
-    if closest_match and max_similarity > 0.5:
+    if closest_match and max_similarity > 0.4:
+        responses = closest_match['responses']
         if 'command' in closest_match:
-            return random.choice(closest_match['responses']), closest_match['command']
+            command = closest_match['command']
         else:
-            return random.choice(closest_match['responses']), None
+            command = None
+        return random.choice(responses), command
     else:
         return None, None
+
+# Function to mix responses to make them more human-like
+
+
+def mix_responses(responses):
+    mixed_response = ""
+    for response in responses:
+        mixed_response += random.choice(response) + " "
+    return mixed_response.strip()
 
 # Main function to interact with the chatbot
 
@@ -51,29 +67,19 @@ def chat():
             break
         response, command = get_response(intents, user_input)
         if response:
+            if isinstance(response, list):
+                response = mix_responses(response)
+            subprocess.run(
+                ['python', 'speech2.py', "{}".format(response), "&"])
             print("Bot:", response)
-            subprocess.run(["notify-send", "{}".format(response)])
-            subprocess.run(['python', 'speech.py', "{}".format(response), "&"])
+
             if command:
                 subprocess.run(command)
         else:
-            print("Bot: Can you provide a response for that?")
-            new_response = input("You: ")
-            tag = None
-            for intent in intents['intents']:
-                for pattern in intent['responses']:
-                    if new_response.lower() == pattern.lower():
-                        tag = intent['tag']
-                        for intent in intents['intents']:
-                            if intent['tag'] == tag:
-                                intent['patterns'].append(user_input)
-                                save_intents(intents)
-                                print("Bot: Thanks! I've learned from that.")
-                                break
-                if tag:
-                    break
-            else:
-                print("Bot: I don't have a tag for that pattern.")
+            apology = "I don't have a tag for that pattern."
+            subprocess.run(
+                ['python', 'speech2.py', apology])
+            print("Bot: I don't have a tag for that pattern.")
 
 
 # Run the chat function
