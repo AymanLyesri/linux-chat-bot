@@ -1,0 +1,51 @@
+,INPUT,OUTPUT,text
+0,workspace 1,going to workspace one | hyprctl dispatch 1,"user
+workspace 1
+assistant
+going to workspace one | hyprctl dispatch 1
+"
+1,workspace 2,going to workspace two | hyprctl dispatch 2,"user
+workspace 2
+assistant
+going to workspace two | hyprctl dispatch 2
+"
+2,workspace 3,going to workspace three | hyprctl dispatch 3,"user
+workspace 3
+assistant
+going to workspace three | hyprctl dispatch 3
+"
+3,workspace 4,going to workspace four | hyprctl dispatch 4,"user
+workspace 4
+assistant
+going to workspace four | hyprctl dispatch 4
+"
+4,workspace 5,going to workspace five | hyprctl dispatch 5,"user
+workspace 5
+assistant
+going to workspace five | hyprctl dispatch 5
+"
+5,workspace 6,going to workspace six | hyprctl dispatch 6,"user
+workspace 6
+assistant
+going to workspace six | hyprctl dispatch 6
+"
+6,workspace 7,going to workspace seven | hyprctl dispatch 7,"user
+workspace 7
+assistant
+going to workspace seven | hyprctl dispatch 7
+"
+7,workspace 8,going to workspace eight | hyprctl dispatch 8,"user
+workspace 8
+assistant
+going to workspace eight | hyprctl dispatch 8
+"
+8,workspace 9,going to workspace nine | hyprctl dispatch 9,"user
+workspace 9
+assistant
+going to workspace nine | hyprctl dispatch 9
+"
+9,workspace 10,going to workspace ten | hyprctl dispatch 10,"user
+workspace 10
+assistant
+going to workspace ten | hyprctl dispatch 10
+"
