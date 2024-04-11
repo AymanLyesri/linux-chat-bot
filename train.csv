@@ -1,51 +1,201 @@
-,INPUT,OUTPUT,text
-0,workspace 1,going to workspace one | hyprctl dispatch 1,"user
-workspace 1
-assistant
-going to workspace one | hyprctl dispatch 1
-"
-1,workspace 2,going to workspace two | hyprctl dispatch 2,"user
-workspace 2
-assistant
-going to workspace two | hyprctl dispatch 2
-"
-2,workspace 3,going to workspace three | hyprctl dispatch 3,"user
-workspace 3
-assistant
-going to workspace three | hyprctl dispatch 3
-"
-3,workspace 4,going to workspace four | hyprctl dispatch 4,"user
-workspace 4
-assistant
-going to workspace four | hyprctl dispatch 4
-"
-4,workspace 5,going to workspace five | hyprctl dispatch 5,"user
-workspace 5
-assistant
-going to workspace five | hyprctl dispatch 5
-"
-5,workspace 6,going to workspace six | hyprctl dispatch 6,"user
-workspace 6
-assistant
-going to workspace six | hyprctl dispatch 6
-"
-6,workspace 7,going to workspace seven | hyprctl dispatch 7,"user
-workspace 7
-assistant
-going to workspace seven | hyprctl dispatch 7
-"
-7,workspace 8,going to workspace eight | hyprctl dispatch 8,"user
-workspace 8
-assistant
-going to workspace eight | hyprctl dispatch 8
-"
-8,workspace 9,going to workspace nine | hyprctl dispatch 9,"user
-workspace 9
-assistant
-going to workspace nine | hyprctl dispatch 9
-"
-9,workspace 10,going to workspace ten | hyprctl dispatch 10,"user
-workspace 10
-assistant
-going to workspace ten | hyprctl dispatch 10
-"
+INPUT,OUTPUT,text
+activate wsp 1,Consider it done. Workspace 1 | hyprctl dispatch 1,<user>activate wsp 1</user><assistant>Consider it done. Workspace 1 | hyprctl dispatch 1</assistant>
+pls switch to ws 10,Done. You're in workspace 10 now | hyprctl dispatch 10,<user>pls switch to ws 10</user><assistant>Done. You're in workspace 10 now | hyprctl dispatch 10</assistant>
+need to switch to workspace 2,Now switching to workspace 2 | hyprctl dispatch 2,<user>need to switch to workspace 2</user><assistant>Now switching to workspace 2 | hyprctl dispatch 2</assistant>
+wsp 8 please,Now switching to workspace 8 | hyprctl dispatch 8,<user>wsp 8 please</user><assistant>Now switching to workspace 8 | hyprctl dispatch 8</assistant>
+can we go to workspace 10?,Done. You're in workspace 10 now | hyprctl dispatch 10,<user>can we go to workspace 10?</user><assistant>Done. You're in workspace 10 now | hyprctl dispatch 10</assistant>
+activate wsp 1,"Sure, workspace 1 coming up | hyprctl dispatch 1","<user>activate wsp 1</user><assistant>Sure, workspace 1 coming up | hyprctl dispatch 1</assistant>"
+how about workspace 8?,Workspace 8 is ready for you | hyprctl dispatch 8,<user>how about workspace 8?</user><assistant>Workspace 8 is ready for you | hyprctl dispatch 8</assistant>
+workspace 6 stat,Workspace 6 is now active | hyprctl dispatch 6,<user>workspace 6 stat</user><assistant>Workspace 6 is now active | hyprctl dispatch 6</assistant>
+workspace 8 now,Transitioning to workspace 8 | hyprctl dispatch 8,<user>workspace 8 now</user><assistant>Transitioning to workspace 8 | hyprctl dispatch 8</assistant>
+wsp 7 please,Workspace 7 is now active | hyprctl dispatch 7,<user>wsp 7 please</user><assistant>Workspace 7 is now active | hyprctl dispatch 7</assistant>
+move me to workspace 5,"Alright, moving to workspace 5 | hyprctl dispatch 5","<user>move me to workspace 5</user><assistant>Alright, moving to workspace 5 | hyprctl dispatch 5</assistant>"
+workspace 10 stat,Consider it done. Workspace 10 | hyprctl dispatch 10,<user>workspace 10 stat</user><assistant>Consider it done. Workspace 10 | hyprctl dispatch 10</assistant>
+need to switch to workspace 8,Let's head over to workspace 8 | hyprctl dispatch 8,<user>need to switch to workspace 8</user><assistant>Let's head over to workspace 8 | hyprctl dispatch 8</assistant>
+need to switch to workspace 3,Consider it done. Workspace 3 | hyprctl dispatch 3,<user>need to switch to workspace 3</user><assistant>Consider it done. Workspace 3 | hyprctl dispatch 3</assistant>
+pls switch to ws 4,Let's head over to workspace 4 | hyprctl dispatch 4,<user>pls switch to ws 4</user><assistant>Let's head over to workspace 4 | hyprctl dispatch 4</assistant>
+need to switch to workspace 1,Workspace 1 is now active | hyprctl dispatch 1,<user>need to switch to workspace 1</user><assistant>Workspace 1 is now active | hyprctl dispatch 1</assistant>
+move me to workspace 3,"Okay, going to workspace 3 | hyprctl dispatch 3","<user>move me to workspace 3</user><assistant>Okay, going to workspace 3 | hyprctl dispatch 3</assistant>"
+let's go to workspace 8,Workspace 8 is now active | hyprctl dispatch 8,<user>let's go to workspace 8</user><assistant>Workspace 8 is now active | hyprctl dispatch 8</assistant>
+"workspace 3, please",Let's head over to workspace 3 | hyprctl dispatch 3,"<user>workspace 3, please</user><assistant>Let's head over to workspace 3 | hyprctl dispatch 3</assistant>"
+pls switch to ws 4,Consider it done. Workspace 4 | hyprctl dispatch 4,<user>pls switch to ws 4</user><assistant>Consider it done. Workspace 4 | hyprctl dispatch 4</assistant>
+how about workspace 9?,"Alright, moving to workspace 9 | hyprctl dispatch 9","<user>how about workspace 9?</user><assistant>Alright, moving to workspace 9 | hyprctl dispatch 9</assistant>"
+workspace 6 now,"Sure, workspace 6 coming up | hyprctl dispatch 6","<user>workspace 6 now</user><assistant>Sure, workspace 6 coming up | hyprctl dispatch 6</assistant>"
+to 6th workspace,Transitioning to workspace 6 | hyprctl dispatch 6,<user>to 6th workspace</user><assistant>Transitioning to workspace 6 | hyprctl dispatch 6</assistant>
+workspace 5 now,Workspace 5 is now active | hyprctl dispatch 5,<user>workspace 5 now</user><assistant>Workspace 5 is now active | hyprctl dispatch 5</assistant>
+move me to workspace 8,Transitioning to workspace 8 | hyprctl dispatch 8,<user>move me to workspace 8</user><assistant>Transitioning to workspace 8 | hyprctl dispatch 8</assistant>
+I need workspace 8,Done. You're in workspace 8 now | hyprctl dispatch 8,<user>I need workspace 8</user><assistant>Done. You're in workspace 8 now | hyprctl dispatch 8</assistant>
+can we go to workspace 9?,Now switching to workspace 9 | hyprctl dispatch 9,<user>can we go to workspace 9?</user><assistant>Now switching to workspace 9 | hyprctl dispatch 9</assistant>
+let's go to workspace 5,"Alright, moving to workspace 5 | hyprctl dispatch 5","<user>let's go to workspace 5</user><assistant>Alright, moving to workspace 5 | hyprctl dispatch 5</assistant>"
+let's go to workspace 6,Workspace 6 is ready for you | hyprctl dispatch 6,<user>let's go to workspace 6</user><assistant>Workspace 6 is ready for you | hyprctl dispatch 6</assistant>
+"quickly, workspace 5",Workspace 5 is now active | hyprctl dispatch 5,"<user>quickly, workspace 5</user><assistant>Workspace 5 is now active | hyprctl dispatch 5</assistant>"
+workspace 10 now,"Okay, going to workspace 10 | hyprctl dispatch 10","<user>workspace 10 now</user><assistant>Okay, going to workspace 10 | hyprctl dispatch 10</assistant>"
+"workspace 9, please",Transitioning to workspace 9 | hyprctl dispatch 9,"<user>workspace 9, please</user><assistant>Transitioning to workspace 9 | hyprctl dispatch 9</assistant>"
+to 8th workspace,"Sure, workspace 8 coming up | hyprctl dispatch 8","<user>to 8th workspace</user><assistant>Sure, workspace 8 coming up | hyprctl dispatch 8</assistant>"
+activate wsp 4,Transitioning to workspace 4 | hyprctl dispatch 4,<user>activate wsp 4</user><assistant>Transitioning to workspace 4 | hyprctl dispatch 4</assistant>
+set workspace to 4,"Sure, workspace 4 coming up | hyprctl dispatch 4","<user>set workspace to 4</user><assistant>Sure, workspace 4 coming up | hyprctl dispatch 4</assistant>"
+set workspace to 10,Let's head over to workspace 10 | hyprctl dispatch 10,<user>set workspace to 10</user><assistant>Let's head over to workspace 10 | hyprctl dispatch 10</assistant>
+activate wsp 1,Workspace 1 is now active | hyprctl dispatch 1,<user>activate wsp 1</user><assistant>Workspace 1 is now active | hyprctl dispatch 1</assistant>
+let's go to workspace 7,"Sure, workspace 7 coming up | hyprctl dispatch 7","<user>let's go to workspace 7</user><assistant>Sure, workspace 7 coming up | hyprctl dispatch 7</assistant>"
+can we go to workspace 10?,"Okay, going to workspace 10 | hyprctl dispatch 10","<user>can we go to workspace 10?</user><assistant>Okay, going to workspace 10 | hyprctl dispatch 10</assistant>"
+workspace 4 now,Workspace 4 is now active | hyprctl dispatch 4,<user>workspace 4 now</user><assistant>Workspace 4 is now active | hyprctl dispatch 4</assistant>
+move me to workspace 3,Transitioning to workspace 3 | hyprctl dispatch 3,<user>move me to workspace 3</user><assistant>Transitioning to workspace 3 | hyprctl dispatch 3</assistant>
+need to switch to workspace 8,Done. You're in workspace 8 now | hyprctl dispatch 8,<user>need to switch to workspace 8</user><assistant>Done. You're in workspace 8 now | hyprctl dispatch 8</assistant>
+wsp 2 please,"Okay, going to workspace 2 | hyprctl dispatch 2","<user>wsp 2 please</user><assistant>Okay, going to workspace 2 | hyprctl dispatch 2</assistant>"
+pls switch to ws 9,Transitioning to workspace 9 | hyprctl dispatch 9,<user>pls switch to ws 9</user><assistant>Transitioning to workspace 9 | hyprctl dispatch 9</assistant>
+how about workspace 7?,Workspace 7 is now active | hyprctl dispatch 7,<user>how about workspace 7?</user><assistant>Workspace 7 is now active | hyprctl dispatch 7</assistant>
+pls switch to ws 2,Done. You're in workspace 2 now | hyprctl dispatch 2,<user>pls switch to ws 2</user><assistant>Done. You're in workspace 2 now | hyprctl dispatch 2</assistant>
+to 4th workspace,"Alright, moving to workspace 4 | hyprctl dispatch 4","<user>to 4th workspace</user><assistant>Alright, moving to workspace 4 | hyprctl dispatch 4</assistant>"
+how about workspace 4?,Workspace 4 is ready for you | hyprctl dispatch 4,<user>how about workspace 4?</user><assistant>Workspace 4 is ready for you | hyprctl dispatch 4</assistant>
+wsp 2 please,Consider it done. Workspace 2 | hyprctl dispatch 2,<user>wsp 2 please</user><assistant>Consider it done. Workspace 2 | hyprctl dispatch 2</assistant>
+how about workspace 4?,Now switching to workspace 4 | hyprctl dispatch 4,<user>how about workspace 4?</user><assistant>Now switching to workspace 4 | hyprctl dispatch 4</assistant>
+can we go to workspace 8?,"Alright, moving to workspace 8 | hyprctl dispatch 8","<user>can we go to workspace 8?</user><assistant>Alright, moving to workspace 8 | hyprctl dispatch 8</assistant>"
+wsp 6 please,"Alright, moving to workspace 6 | hyprctl dispatch 6","<user>wsp 6 please</user><assistant>Alright, moving to workspace 6 | hyprctl dispatch 6</assistant>"
+wsp 4 please,Workspace 4 is now active | hyprctl dispatch 4,<user>wsp 4 please</user><assistant>Workspace 4 is now active | hyprctl dispatch 4</assistant>
+can we go to workspace 7?,Transitioning to workspace 7 | hyprctl dispatch 7,<user>can we go to workspace 7?</user><assistant>Transitioning to workspace 7 | hyprctl dispatch 7</assistant>
+move me to workspace 9,Workspace 9 is now active | hyprctl dispatch 9,<user>move me to workspace 9</user><assistant>Workspace 9 is now active | hyprctl dispatch 9</assistant>
+workspace 6 now,Consider it done. Workspace 6 | hyprctl dispatch 6,<user>workspace 6 now</user><assistant>Consider it done. Workspace 6 | hyprctl dispatch 6</assistant>
+activate wsp 4,Done. You're in workspace 4 now | hyprctl dispatch 4,<user>activate wsp 4</user><assistant>Done. You're in workspace 4 now | hyprctl dispatch 4</assistant>
+workspace 5 stat,Now switching to workspace 5 | hyprctl dispatch 5,<user>workspace 5 stat</user><assistant>Now switching to workspace 5 | hyprctl dispatch 5</assistant>
+can we go to workspace 7?,"Alright, moving to workspace 7 | hyprctl dispatch 7","<user>can we go to workspace 7?</user><assistant>Alright, moving to workspace 7 | hyprctl dispatch 7</assistant>"
+need to switch to workspace 7,Done. You're in workspace 7 now | hyprctl dispatch 7,<user>need to switch to workspace 7</user><assistant>Done. You're in workspace 7 now | hyprctl dispatch 7</assistant>
+"quickly, workspace 7","Sure, workspace 7 coming up | hyprctl dispatch 7","<user>quickly, workspace 7</user><assistant>Sure, workspace 7 coming up | hyprctl dispatch 7</assistant>"
+"quickly, workspace 6",Now switching to workspace 6 | hyprctl dispatch 6,"<user>quickly, workspace 6</user><assistant>Now switching to workspace 6 | hyprctl dispatch 6</assistant>"
+activate wsp 4,"Alright, moving to workspace 4 | hyprctl dispatch 4","<user>activate wsp 4</user><assistant>Alright, moving to workspace 4 | hyprctl dispatch 4</assistant>"
+wsp 5 please,Transitioning to workspace 5 | hyprctl dispatch 5,<user>wsp 5 please</user><assistant>Transitioning to workspace 5 | hyprctl dispatch 5</assistant>
+how about workspace 6?,Workspace 6 is ready for you | hyprctl dispatch 6,<user>how about workspace 6?</user><assistant>Workspace 6 is ready for you | hyprctl dispatch 6</assistant>
+"quickly, workspace 1","Alright, moving to workspace 1 | hyprctl dispatch 1","<user>quickly, workspace 1</user><assistant>Alright, moving to workspace 1 | hyprctl dispatch 1</assistant>"
+let's go to workspace 10,"Okay, going to workspace 10 | hyprctl dispatch 10","<user>let's go to workspace 10</user><assistant>Okay, going to workspace 10 | hyprctl dispatch 10</assistant>"
+"quickly, workspace 1",Workspace 1 is ready for you | hyprctl dispatch 1,"<user>quickly, workspace 1</user><assistant>Workspace 1 is ready for you | hyprctl dispatch 1</assistant>"
+how about workspace 7?,Now switching to workspace 7 | hyprctl dispatch 7,<user>how about workspace 7?</user><assistant>Now switching to workspace 7 | hyprctl dispatch 7</assistant>
+pls switch to ws 5,Consider it done. Workspace 5 | hyprctl dispatch 5,<user>pls switch to ws 5</user><assistant>Consider it done. Workspace 5 | hyprctl dispatch 5</assistant>
+workspace 4 stat,Consider it done. Workspace 4 | hyprctl dispatch 4,<user>workspace 4 stat</user><assistant>Consider it done. Workspace 4 | hyprctl dispatch 4</assistant>
+move me to workspace 7,Done. You're in workspace 7 now | hyprctl dispatch 7,<user>move me to workspace 7</user><assistant>Done. You're in workspace 7 now | hyprctl dispatch 7</assistant>
+can we go to workspace 4?,Done. You're in workspace 4 now | hyprctl dispatch 4,<user>can we go to workspace 4?</user><assistant>Done. You're in workspace 4 now | hyprctl dispatch 4</assistant>
+can we go to workspace 10?,"Sure, workspace 10 coming up | hyprctl dispatch 10","<user>can we go to workspace 10?</user><assistant>Sure, workspace 10 coming up | hyprctl dispatch 10</assistant>"
+workspace 6 stat,Let's head over to workspace 6 | hyprctl dispatch 6,<user>workspace 6 stat</user><assistant>Let's head over to workspace 6 | hyprctl dispatch 6</assistant>
+how about workspace 8?,Transitioning to workspace 8 | hyprctl dispatch 8,<user>how about workspace 8?</user><assistant>Transitioning to workspace 8 | hyprctl dispatch 8</assistant>
+can we go to workspace 4?,"Okay, going to workspace 4 | hyprctl dispatch 4","<user>can we go to workspace 4?</user><assistant>Okay, going to workspace 4 | hyprctl dispatch 4</assistant>"
+workspace 10 stat,Workspace 10 is now active | hyprctl dispatch 10,<user>workspace 10 stat</user><assistant>Workspace 10 is now active | hyprctl dispatch 10</assistant>
+workspace 3 now,Now switching to workspace 3 | hyprctl dispatch 3,<user>workspace 3 now</user><assistant>Now switching to workspace 3 | hyprctl dispatch 3</assistant>
+"quickly, workspace 9",Workspace 9 is ready for you | hyprctl dispatch 9,"<user>quickly, workspace 9</user><assistant>Workspace 9 is ready for you | hyprctl dispatch 9</assistant>"
+workspace 7 stat,Let's head over to workspace 7 | hyprctl dispatch 7,<user>workspace 7 stat</user><assistant>Let's head over to workspace 7 | hyprctl dispatch 7</assistant>
+wsp 5 please,Consider it done. Workspace 5 | hyprctl dispatch 5,<user>wsp 5 please</user><assistant>Consider it done. Workspace 5 | hyprctl dispatch 5</assistant>
+"workspace 10, please","Sure, workspace 10 coming up | hyprctl dispatch 10","<user>workspace 10, please</user><assistant>Sure, workspace 10 coming up | hyprctl dispatch 10</assistant>"
+wsp 10 please,Transitioning to workspace 10 | hyprctl dispatch 10,<user>wsp 10 please</user><assistant>Transitioning to workspace 10 | hyprctl dispatch 10</assistant>
+how about workspace 9?,Now switching to workspace 9 | hyprctl dispatch 9,<user>how about workspace 9?</user><assistant>Now switching to workspace 9 | hyprctl dispatch 9</assistant>
+workspace 7 now,"Sure, workspace 7 coming up | hyprctl dispatch 7","<user>workspace 7 now</user><assistant>Sure, workspace 7 coming up | hyprctl dispatch 7</assistant>"
+let's go to workspace 8,"Alright, moving to workspace 8 | hyprctl dispatch 8","<user>let's go to workspace 8</user><assistant>Alright, moving to workspace 8 | hyprctl dispatch 8</assistant>"
+move me to workspace 7,Workspace 7 is now active | hyprctl dispatch 7,<user>move me to workspace 7</user><assistant>Workspace 7 is now active | hyprctl dispatch 7</assistant>
+workspace 3 now,Let's head over to workspace 3 | hyprctl dispatch 3,<user>workspace 3 now</user><assistant>Let's head over to workspace 3 | hyprctl dispatch 3</assistant>
+set workspace to 6,"Alright, moving to workspace 6 | hyprctl dispatch 6","<user>set workspace to 6</user><assistant>Alright, moving to workspace 6 | hyprctl dispatch 6</assistant>"
+can we go to workspace 9?,"Sure, workspace 9 coming up | hyprctl dispatch 9","<user>can we go to workspace 9?</user><assistant>Sure, workspace 9 coming up | hyprctl dispatch 9</assistant>"
+set workspace to 7,Now switching to workspace 7 | hyprctl dispatch 7,<user>set workspace to 7</user><assistant>Now switching to workspace 7 | hyprctl dispatch 7</assistant>
+workspace 2 stat,"Okay, going to workspace 2 | hyprctl dispatch 2","<user>workspace 2 stat</user><assistant>Okay, going to workspace 2 | hyprctl dispatch 2</assistant>"
+pls switch to ws 2,Workspace 2 is ready for you | hyprctl dispatch 2,<user>pls switch to ws 2</user><assistant>Workspace 2 is ready for you | hyprctl dispatch 2</assistant>
+move me to workspace 4,Workspace 4 is now active | hyprctl dispatch 4,<user>move me to workspace 4</user><assistant>Workspace 4 is now active | hyprctl dispatch 4</assistant>
+move me to workspace 6,Consider it done. Workspace 6 | hyprctl dispatch 6,<user>move me to workspace 6</user><assistant>Consider it done. Workspace 6 | hyprctl dispatch 6</assistant>
+"quickly, workspace 7",Consider it done. Workspace 7 | hyprctl dispatch 7,"<user>quickly, workspace 7</user><assistant>Consider it done. Workspace 7 | hyprctl dispatch 7</assistant>"
+set workspace to 3,"Alright, moving to workspace 3 | hyprctl dispatch 3","<user>set workspace to 3</user><assistant>Alright, moving to workspace 3 | hyprctl dispatch 3</assistant>"
+I need workspace 5,Consider it done. Workspace 5 | hyprctl dispatch 5,<user>I need workspace 5</user><assistant>Consider it done. Workspace 5 | hyprctl dispatch 5</assistant>
+move me to workspace 7,Workspace 7 is ready for you | hyprctl dispatch 7,<user>move me to workspace 7</user><assistant>Workspace 7 is ready for you | hyprctl dispatch 7</assistant>
+wsp 4 please,"Alright, moving to workspace 4 | hyprctl dispatch 4","<user>wsp 4 please</user><assistant>Alright, moving to workspace 4 | hyprctl dispatch 4</assistant>"
+"quickly, workspace 8",Consider it done. Workspace 8 | hyprctl dispatch 8,"<user>quickly, workspace 8</user><assistant>Consider it done. Workspace 8 | hyprctl dispatch 8</assistant>"
+activate wsp 1,Now switching to workspace 1 | hyprctl dispatch 1,<user>activate wsp 1</user><assistant>Now switching to workspace 1 | hyprctl dispatch 1</assistant>
+need to switch to workspace 2,Done. You're in workspace 2 now | hyprctl dispatch 2,<user>need to switch to workspace 2</user><assistant>Done. You're in workspace 2 now | hyprctl dispatch 2</assistant>
+wsp 8 please,Done. You're in workspace 8 now | hyprctl dispatch 8,<user>wsp 8 please</user><assistant>Done. You're in workspace 8 now | hyprctl dispatch 8</assistant>
+to 10th workspace,Now switching to workspace 10 | hyprctl dispatch 10,<user>to 10th workspace</user><assistant>Now switching to workspace 10 | hyprctl dispatch 10</assistant>
+activate wsp 8,Done. You're in workspace 8 now | hyprctl dispatch 8,<user>activate wsp 8</user><assistant>Done. You're in workspace 8 now | hyprctl dispatch 8</assistant>
+let's go to workspace 2,Done. You're in workspace 2 now | hyprctl dispatch 2,<user>let's go to workspace 2</user><assistant>Done. You're in workspace 2 now | hyprctl dispatch 2</assistant>
+wsp 1 please,Transitioning to workspace 1 | hyprctl dispatch 1,<user>wsp 1 please</user><assistant>Transitioning to workspace 1 | hyprctl dispatch 1</assistant>
+"quickly, workspace 10",Workspace 10 is ready for you | hyprctl dispatch 10,"<user>quickly, workspace 10</user><assistant>Workspace 10 is ready for you | hyprctl dispatch 10</assistant>"
+how about workspace 6?,"Okay, going to workspace 6 | hyprctl dispatch 6","<user>how about workspace 6?</user><assistant>Okay, going to workspace 6 | hyprctl dispatch 6</assistant>"
+I need workspace 1,Workspace 1 is now active | hyprctl dispatch 1,<user>I need workspace 1</user><assistant>Workspace 1 is now active | hyprctl dispatch 1</assistant>
+how about workspace 1?,Done. You're in workspace 1 now | hyprctl dispatch 1,<user>how about workspace 1?</user><assistant>Done. You're in workspace 1 now | hyprctl dispatch 1</assistant>
+how about workspace 1?,Now switching to workspace 1 | hyprctl dispatch 1,<user>how about workspace 1?</user><assistant>Now switching to workspace 1 | hyprctl dispatch 1</assistant>
+I need workspace 10,Workspace 10 is now active | hyprctl dispatch 10,<user>I need workspace 10</user><assistant>Workspace 10 is now active | hyprctl dispatch 10</assistant>
+let's go to workspace 6,Workspace 6 is now active | hyprctl dispatch 6,<user>let's go to workspace 6</user><assistant>Workspace 6 is now active | hyprctl dispatch 6</assistant>
+let's go to workspace 10,"Sure, workspace 10 coming up | hyprctl dispatch 10","<user>let's go to workspace 10</user><assistant>Sure, workspace 10 coming up | hyprctl dispatch 10</assistant>"
+I need workspace 8,Transitioning to workspace 8 | hyprctl dispatch 8,<user>I need workspace 8</user><assistant>Transitioning to workspace 8 | hyprctl dispatch 8</assistant>
+can we go to workspace 6?,"Alright, moving to workspace 6 | hyprctl dispatch 6","<user>can we go to workspace 6?</user><assistant>Alright, moving to workspace 6 | hyprctl dispatch 6</assistant>"
+"workspace 4, please","Alright, moving to workspace 4 | hyprctl dispatch 4","<user>workspace 4, please</user><assistant>Alright, moving to workspace 4 | hyprctl dispatch 4</assistant>"
+I need workspace 6,Let's head over to workspace 6 | hyprctl dispatch 6,<user>I need workspace 6</user><assistant>Let's head over to workspace 6 | hyprctl dispatch 6</assistant>
+workspace 8 now,Workspace 8 is ready for you | hyprctl dispatch 8,<user>workspace 8 now</user><assistant>Workspace 8 is ready for you | hyprctl dispatch 8</assistant>
+let's go to workspace 4,"Sure, workspace 4 coming up | hyprctl dispatch 4","<user>let's go to workspace 4</user><assistant>Sure, workspace 4 coming up | hyprctl dispatch 4</assistant>"
+pls switch to ws 6,Now switching to workspace 6 | hyprctl dispatch 6,<user>pls switch to ws 6</user><assistant>Now switching to workspace 6 | hyprctl dispatch 6</assistant>
+to 5th workspace,Done. You're in workspace 5 now | hyprctl dispatch 5,<user>to 5th workspace</user><assistant>Done. You're in workspace 5 now | hyprctl dispatch 5</assistant>
+workspace 7 stat,Workspace 7 is ready for you | hyprctl dispatch 7,<user>workspace 7 stat</user><assistant>Workspace 7 is ready for you | hyprctl dispatch 7</assistant>
+wsp 6 please,Workspace 6 is ready for you | hyprctl dispatch 6,<user>wsp 6 please</user><assistant>Workspace 6 is ready for you | hyprctl dispatch 6</assistant>
+move me to workspace 1,Workspace 1 is now active | hyprctl dispatch 1,<user>move me to workspace 1</user><assistant>Workspace 1 is now active | hyprctl dispatch 1</assistant>
+wsp 9 please,Workspace 9 is ready for you | hyprctl dispatch 9,<user>wsp 9 please</user><assistant>Workspace 9 is ready for you | hyprctl dispatch 9</assistant>
+can we go to workspace 5?,Workspace 5 is now active | hyprctl dispatch 5,<user>can we go to workspace 5?</user><assistant>Workspace 5 is now active | hyprctl dispatch 5</assistant>
+I need workspace 7,Now switching to workspace 7 | hyprctl dispatch 7,<user>I need workspace 7</user><assistant>Now switching to workspace 7 | hyprctl dispatch 7</assistant>
+workspace 3 now,Workspace 3 is ready for you | hyprctl dispatch 3,<user>workspace 3 now</user><assistant>Workspace 3 is ready for you | hyprctl dispatch 3</assistant>
+can we go to workspace 9?,Workspace 9 is now active | hyprctl dispatch 9,<user>can we go to workspace 9?</user><assistant>Workspace 9 is now active | hyprctl dispatch 9</assistant>
+how about workspace 5?,"Alright, moving to workspace 5 | hyprctl dispatch 5","<user>how about workspace 5?</user><assistant>Alright, moving to workspace 5 | hyprctl dispatch 5</assistant>"
+how about workspace 5?,Done. You're in workspace 5 now | hyprctl dispatch 5,<user>how about workspace 5?</user><assistant>Done. You're in workspace 5 now | hyprctl dispatch 5</assistant>
+"quickly, workspace 5",Now switching to workspace 5 | hyprctl dispatch 5,"<user>quickly, workspace 5</user><assistant>Now switching to workspace 5 | hyprctl dispatch 5</assistant>"
+can we go to workspace 5?,Now switching to workspace 5 | hyprctl dispatch 5,<user>can we go to workspace 5?</user><assistant>Now switching to workspace 5 | hyprctl dispatch 5</assistant>
+pls switch to ws 4,"Okay, going to workspace 4 | hyprctl dispatch 4","<user>pls switch to ws 4</user><assistant>Okay, going to workspace 4 | hyprctl dispatch 4</assistant>"
+need to switch to workspace 3,Transitioning to workspace 3 | hyprctl dispatch 3,<user>need to switch to workspace 3</user><assistant>Transitioning to workspace 3 | hyprctl dispatch 3</assistant>
+move me to workspace 4,Done. You're in workspace 4 now | hyprctl dispatch 4,<user>move me to workspace 4</user><assistant>Done. You're in workspace 4 now | hyprctl dispatch 4</assistant>
+pls switch to ws 10,Consider it done. Workspace 10 | hyprctl dispatch 10,<user>pls switch to ws 10</user><assistant>Consider it done. Workspace 10 | hyprctl dispatch 10</assistant>
+need to switch to workspace 9,Let's head over to workspace 9 | hyprctl dispatch 9,<user>need to switch to workspace 9</user><assistant>Let's head over to workspace 9 | hyprctl dispatch 9</assistant>
+"quickly, workspace 7",Let's head over to workspace 7 | hyprctl dispatch 7,"<user>quickly, workspace 7</user><assistant>Let's head over to workspace 7 | hyprctl dispatch 7</assistant>"
+let's go to workspace 3,"Alright, moving to workspace 3 | hyprctl dispatch 3","<user>let's go to workspace 3</user><assistant>Alright, moving to workspace 3 | hyprctl dispatch 3</assistant>"
+set workspace to 2,Workspace 2 is ready for you | hyprctl dispatch 2,<user>set workspace to 2</user><assistant>Workspace 2 is ready for you | hyprctl dispatch 2</assistant>
+"quickly, workspace 9",Workspace 9 is now active | hyprctl dispatch 9,"<user>quickly, workspace 9</user><assistant>Workspace 9 is now active | hyprctl dispatch 9</assistant>"
+how about workspace 4?,Workspace 4 is now active | hyprctl dispatch 4,<user>how about workspace 4?</user><assistant>Workspace 4 is now active | hyprctl dispatch 4</assistant>
+workspace 10 now,Now switching to workspace 10 | hyprctl dispatch 10,<user>workspace 10 now</user><assistant>Now switching to workspace 10 | hyprctl dispatch 10</assistant>
+move me to workspace 9,"Sure, workspace 9 coming up | hyprctl dispatch 9","<user>move me to workspace 9</user><assistant>Sure, workspace 9 coming up | hyprctl dispatch 9</assistant>"
+I need workspace 8,Workspace 8 is now active | hyprctl dispatch 8,<user>I need workspace 8</user><assistant>Workspace 8 is now active | hyprctl dispatch 8</assistant>
+set workspace to 4,Workspace 4 is ready for you | hyprctl dispatch 4,<user>set workspace to 4</user><assistant>Workspace 4 is ready for you | hyprctl dispatch 4</assistant>
+to 5th workspace,Transitioning to workspace 5 | hyprctl dispatch 5,<user>to 5th workspace</user><assistant>Transitioning to workspace 5 | hyprctl dispatch 5</assistant>
+can we go to workspace 9?,Done. You're in workspace 9 now | hyprctl dispatch 9,<user>can we go to workspace 9?</user><assistant>Done. You're in workspace 9 now | hyprctl dispatch 9</assistant>
+activate wsp 3,Transitioning to workspace 3 | hyprctl dispatch 3,<user>activate wsp 3</user><assistant>Transitioning to workspace 3 | hyprctl dispatch 3</assistant>
+activate wsp 8,Consider it done. Workspace 8 | hyprctl dispatch 8,<user>activate wsp 8</user><assistant>Consider it done. Workspace 8 | hyprctl dispatch 8</assistant>
+move me to workspace 6,Workspace 6 is ready for you | hyprctl dispatch 6,<user>move me to workspace 6</user><assistant>Workspace 6 is ready for you | hyprctl dispatch 6</assistant>
+"workspace 1, please",Transitioning to workspace 1 | hyprctl dispatch 1,"<user>workspace 1, please</user><assistant>Transitioning to workspace 1 | hyprctl dispatch 1</assistant>"
+let's go to workspace 4,Done. You're in workspace 4 now | hyprctl dispatch 4,<user>let's go to workspace 4</user><assistant>Done. You're in workspace 4 now | hyprctl dispatch 4</assistant>
+"quickly, workspace 3",Now switching to workspace 3 | hyprctl dispatch 3,"<user>quickly, workspace 3</user><assistant>Now switching to workspace 3 | hyprctl dispatch 3</assistant>"
+need to switch to workspace 6,"Alright, moving to workspace 6 | hyprctl dispatch 6","<user>need to switch to workspace 6</user><assistant>Alright, moving to workspace 6 | hyprctl dispatch 6</assistant>"
+"workspace 3, please",Workspace 3 is now active | hyprctl dispatch 3,"<user>workspace 3, please</user><assistant>Workspace 3 is now active | hyprctl dispatch 3</assistant>"
+need to switch to workspace 1,Transitioning to workspace 1 | hyprctl dispatch 1,<user>need to switch to workspace 1</user><assistant>Transitioning to workspace 1 | hyprctl dispatch 1</assistant>
+"quickly, workspace 6",Transitioning to workspace 6 | hyprctl dispatch 6,"<user>quickly, workspace 6</user><assistant>Transitioning to workspace 6 | hyprctl dispatch 6</assistant>"
+"workspace 9, please","Alright, moving to workspace 9 | hyprctl dispatch 9","<user>workspace 9, please</user><assistant>Alright, moving to workspace 9 | hyprctl dispatch 9</assistant>"
+workspace 8 now,Done. You're in workspace 8 now | hyprctl dispatch 8,<user>workspace 8 now</user><assistant>Done. You're in workspace 8 now | hyprctl dispatch 8</assistant>
+workspace 5 now,Let's head over to workspace 5 | hyprctl dispatch 5,<user>workspace 5 now</user><assistant>Let's head over to workspace 5 | hyprctl dispatch 5</assistant>
+"workspace 3, please",Consider it done. Workspace 3 | hyprctl dispatch 3,"<user>workspace 3, please</user><assistant>Consider it done. Workspace 3 | hyprctl dispatch 3</assistant>"
+workspace 7 now,"Okay, going to workspace 7 | hyprctl dispatch 7","<user>workspace 7 now</user><assistant>Okay, going to workspace 7 | hyprctl dispatch 7</assistant>"
+"quickly, workspace 4",Workspace 4 is now active | hyprctl dispatch 4,"<user>quickly, workspace 4</user><assistant>Workspace 4 is now active | hyprctl dispatch 4</assistant>"
+wsp 1 please,"Alright, moving to workspace 1 | hyprctl dispatch 1","<user>wsp 1 please</user><assistant>Alright, moving to workspace 1 | hyprctl dispatch 1</assistant>"
+wsp 6 please,"Sure, workspace 6 coming up | hyprctl dispatch 6","<user>wsp 6 please</user><assistant>Sure, workspace 6 coming up | hyprctl dispatch 6</assistant>"
+workspace 9 stat,"Okay, going to workspace 9 | hyprctl dispatch 9","<user>workspace 9 stat</user><assistant>Okay, going to workspace 9 | hyprctl dispatch 9</assistant>"
+let's go to workspace 3,"Okay, going to workspace 3 | hyprctl dispatch 3","<user>let's go to workspace 3</user><assistant>Okay, going to workspace 3 | hyprctl dispatch 3</assistant>"
+pls switch to ws 1,Workspace 1 is ready for you | hyprctl dispatch 1,<user>pls switch to ws 1</user><assistant>Workspace 1 is ready for you | hyprctl dispatch 1</assistant>
+workspace 7 now,Consider it done. Workspace 7 | hyprctl dispatch 7,<user>workspace 7 now</user><assistant>Consider it done. Workspace 7 | hyprctl dispatch 7</assistant>
+let's go to workspace 8,Consider it done. Workspace 8 | hyprctl dispatch 8,<user>let's go to workspace 8</user><assistant>Consider it done. Workspace 8 | hyprctl dispatch 8</assistant>
+"quickly, workspace 8",Workspace 8 is now active | hyprctl dispatch 8,"<user>quickly, workspace 8</user><assistant>Workspace 8 is now active | hyprctl dispatch 8</assistant>"
+"quickly, workspace 4",Now switching to workspace 4 | hyprctl dispatch 4,"<user>quickly, workspace 4</user><assistant>Now switching to workspace 4 | hyprctl dispatch 4</assistant>"
+workspace 10 stat,Done. You're in workspace 10 now | hyprctl dispatch 10,<user>workspace 10 stat</user><assistant>Done. You're in workspace 10 now | hyprctl dispatch 10</assistant>
+move me to workspace 8,Let's head over to workspace 8 | hyprctl dispatch 8,<user>move me to workspace 8</user><assistant>Let's head over to workspace 8 | hyprctl dispatch 8</assistant>
+can we go to workspace 5?,Transitioning to workspace 5 | hyprctl dispatch 5,<user>can we go to workspace 5?</user><assistant>Transitioning to workspace 5 | hyprctl dispatch 5</assistant>
+let's go to workspace 1,Transitioning to workspace 1 | hyprctl dispatch 1,<user>let's go to workspace 1</user><assistant>Transitioning to workspace 1 | hyprctl dispatch 1</assistant>
+to 1th workspace,Workspace 1 is now active | hyprctl dispatch 1,<user>to 1th workspace</user><assistant>Workspace 1 is now active | hyprctl dispatch 1</assistant>
+workspace 7 now,Workspace 7 is ready for you | hyprctl dispatch 7,<user>workspace 7 now</user><assistant>Workspace 7 is ready for you | hyprctl dispatch 7</assistant>
+can we go to workspace 2?,Consider it done. Workspace 2 | hyprctl dispatch 2,<user>can we go to workspace 2?</user><assistant>Consider it done. Workspace 2 | hyprctl dispatch 2</assistant>
+move me to workspace 4,"Alright, moving to workspace 4 | hyprctl dispatch 4","<user>move me to workspace 4</user><assistant>Alright, moving to workspace 4 | hyprctl dispatch 4</assistant>"
+workspace 3 now,"Alright, moving to workspace 3 | hyprctl dispatch 3","<user>workspace 3 now</user><assistant>Alright, moving to workspace 3 | hyprctl dispatch 3</assistant>"
+need to switch to workspace 4,Workspace 4 is now active | hyprctl dispatch 4,<user>need to switch to workspace 4</user><assistant>Workspace 4 is now active | hyprctl dispatch 4</assistant>
+workspace 9 stat,"Sure, workspace 9 coming up | hyprctl dispatch 9","<user>workspace 9 stat</user><assistant>Sure, workspace 9 coming up | hyprctl dispatch 9</assistant>"
+move me to workspace 8,"Sure, workspace 8 coming up | hyprctl dispatch 8","<user>move me to workspace 8</user><assistant>Sure, workspace 8 coming up | hyprctl dispatch 8</assistant>"
+how about workspace 2?,Now switching to workspace 2 | hyprctl dispatch 2,<user>how about workspace 2?</user><assistant>Now switching to workspace 2 | hyprctl dispatch 2</assistant>
+let's go to workspace 9,"Okay, going to workspace 9 | hyprctl dispatch 9","<user>let's go to workspace 9</user><assistant>Okay, going to workspace 9 | hyprctl dispatch 9</assistant>"
+set workspace to 6,Transitioning to workspace 6 | hyprctl dispatch 6,<user>set workspace to 6</user><assistant>Transitioning to workspace 6 | hyprctl dispatch 6</assistant>
+I need workspace 5,Let's head over to workspace 5 | hyprctl dispatch 5,<user>I need workspace 5</user><assistant>Let's head over to workspace 5 | hyprctl dispatch 5</assistant>
+move me to workspace 5,Let's head over to workspace 5 | hyprctl dispatch 5,<user>move me to workspace 5</user><assistant>Let's head over to workspace 5 | hyprctl dispatch 5</assistant>
+I need workspace 2,Let's head over to workspace 2 | hyprctl dispatch 2,<user>I need workspace 2</user><assistant>Let's head over to workspace 2 | hyprctl dispatch 2</assistant>
+to 3th workspace,"Sure, workspace 3 coming up | hyprctl dispatch 3","<user>to 3th workspace</user><assistant>Sure, workspace 3 coming up | hyprctl dispatch 3</assistant>"
+move me to workspace 6,"Sure, workspace 6 coming up | hyprctl dispatch 6","<user>move me to workspace 6</user><assistant>Sure, workspace 6 coming up | hyprctl dispatch 6</assistant>"
+"workspace 2, please",Let's head over to workspace 2 | hyprctl dispatch 2,"<user>workspace 2, please</user><assistant>Let's head over to workspace 2 | hyprctl dispatch 2</assistant>"
+to 9th workspace,"Sure, workspace 9 coming up | hyprctl dispatch 9","<user>to 9th workspace</user><assistant>Sure, workspace 9 coming up | hyprctl dispatch 9</assistant>"
