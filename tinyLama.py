@@ -5,6 +5,12 @@ from transformers import pipeline
 # Set the environment variable HSA_OVERRIDE_GFX_VERSION=10.3.0
 os.environ["HSA_OVERRIDE_GFX_VERSION"] = "10.3.0"
 
+# List available devices
+print("Available devices:", torch.cuda.device_count())
+print("Name of the first available device:", torch.cuda.get_device_name(0))
+print("Current device", torch.cuda.current_device())
+
+
 # Check if CUDA (GPU support) is available
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print("Using device:", device)
@@ -30,8 +36,8 @@ def chat_bot(prompt):
     prompt = pipe.tokenizer.apply_chat_template(
         messages, tokenize=False, add_generation_prompt=True)
     outputs = pipe(prompt)
-    return outputs
-    # return outputs[0]["generated_text"]
+    # return outputs
+    return outputs[0]["generated_text"]
 
 
 # Chat loop
