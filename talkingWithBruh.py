@@ -44,18 +44,12 @@ def generate_response(input) -> List[str]:
     generated_text = tokenizer.decode(
         output_tokens[0], skip_special_tokens=True)
 
-    # Check if generated_text can be split
-    if "|" in generated_text:
-        response, command = generated_text.split("|", 1)
-        # Extract the text after "### Assistant:"
-        response = response[response.find("### Assistant:") +
-                            len("### Assistant:"):].strip()
-        return [response, command]
-    else:
-        # Return generated_text without splitting
-        response = generated_text[generated_text.find("### Assistant:") +
-                                  len("### Assistant:"):].strip()
-        return [generated_text.strip(), ""]
+    response = generated_text[generated_text.find(
+        "### Assistant:") + len("### Assistant:"):generated_text.find("### Command")].strip()
+
+    command = generated_text.split("### Command:", 1)[-1].strip()
+
+    return [response, command]
 
 
 # Chat loop
@@ -66,6 +60,7 @@ while True:
     response = generate_response(user_input)
 
     print("Bot:", response[0])
-    subprocess.run(["python", "speech2.py", "{}".format(response[0])])
+    subprocess.run(["python", "speech2.py", "{}".format(
+        response[0])], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
     print("Command:", response[1])

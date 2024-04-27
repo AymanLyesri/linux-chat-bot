@@ -1,3 +1,3 @@
 rm train.csv
-python DATA/trainOnWorkspaces.py
-python DATA/trainOnFiles.py
+python DATA/workspaceData/trainOnWorkspaces.py
+python DATA/fileManipulation/trainOnFiles.py

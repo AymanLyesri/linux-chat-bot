@@ -19,7 +19,7 @@
     "auto_find_batch_size": false,
     "mixed_precision": null,
     "lr": 0.0002,
-    "epochs": 15,
+    "epochs": 10,
     "batch_size": 4,
     "warmup_ratio": 0.1,
     "gradient_accumulation": 1,

@@ -7,8 +7,7 @@ if [ $# -eq 0 ]; then
 fi
 
 # Extract the argument (notification message)
-notification_image="$1"
-notification_message="$2"
+notification_message="$1"
 
 # Send the notification using notify-send
-notify-send -i ~/python_chat_bot/expressions/"$notification_image" "$notification_message"
+notify-send -i ~/python_chat_bot/pfp.jpg "$notification_message"
