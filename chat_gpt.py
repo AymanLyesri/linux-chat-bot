@@ -44,9 +44,14 @@ def processResponse(response):
             image = "thinking.jpg"
     # Display the image notification
         subprocess.run(["bash", "notification.sh", image,
-                       remove_enclosed_words(response)])
+                       remove_enclosed_words(response), "&"])
+    speech = response.split("|")[0]
+    if "|" in response:
+        bash = response.split("|")[1]
+        subprocess.run(bash, shell=True, capture_output=True, text=True)
+
     # Play the bot's response as speech
-    subprocess.run(["python", "speech.py", remove_enclosed_words(response)])
+    subprocess.run(["python", "speech.py", remove_enclosed_words(speech)])
 
 
 def extract_enclosed_word(text):
@@ -70,12 +75,6 @@ def remove_enclosed_words(text):
     return result.strip()
 
 
-# Example usage
-text = "Hi there, sweetie! *giggles* What do you have in store for us today?"
-enclosed_words = extract_enclosed_word(text)
-print(enclosed_words)
-
-
 def main():
 
     # Initialize an empty list to store conversation history
@@ -89,6 +88,23 @@ def main():
                     dialogue_history += loaded_history
     except Exception as e:
         print("An error occurred while loading dialogue history from JSON:", e)
+
+    try:
+        if os.path.exists("commands.json"):
+            with open("commands.json", "r") as f:
+                commands = json.load(f)
+                if commands:
+                    dialogue_history += commands
+    except Exception as e:
+        print("An error occurred while loading dialogue commands from JSON:", e)
+
+    # If the dialogue history is empty, add the context
+    if not dialogue_history:
+        dialogue_history.append(
+            {"role": "system", "content": context})
+    # If the dialogue history is not empty, add the context as the first item
+    else:
+        dialogue_history[0] = {"role": "system", "content": context}
 
     print("Welcome to Simple ChatBot!")
     print("You can start chatting by typing your messages.")
@@ -129,6 +145,10 @@ def main():
         # Check if the user wants to exit the conversation
         if user_input.lower() == 'exit':
             break
+        elif user_input.lower() == 'forget':
+            dialogue_history = []
+            with open("dialogue_history.json", "w") as f:
+                json.dump([], f)
 
 
 if __name__ == "__main__":
