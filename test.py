@@ -1,9 +1,6 @@
-import re
+sentence = "honutoeu ```bash\nhyprctl dispatch workspace 1\n```"
+start, command, end = sentence.split("```")
+command = command.replace("bash\n", "").strip()
 
-
-sentence = " honutoeu```\\nhyprctl dispatch workspace 1\\n``` More text here"
-command = re.search(r'```(.*?)```', sentence).group(1)
-remaining_sentence = re.sub(r'```(.*?)```', '', sentence)
-
-print("Command: ", command)
-print("Remaining Sentence: ", remaining_sentence)
+print("Command:", command)
+print("Clean Text:", start.strip()+" " + end.strip())
