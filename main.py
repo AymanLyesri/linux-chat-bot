@@ -38,7 +38,6 @@ def main():
         # Check if the user wants to forget the conversation history
         elif user_input.lower() == 'forget':
             process.process_input("Forget about what we talked about before")
-            config.dialogue_history = []
             with open("dialogue_history.json", "w") as f:
                 json.dump([], f)
             config.get_json_values()

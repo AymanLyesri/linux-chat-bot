@@ -7,6 +7,27 @@ import TTS
 import asyncio
 
 
+def extract_enclosed_word(text):
+    # Split the text by asterisks
+    parts = text.split('*')
+
+    # Filter out parts that are enclosed by asterisks
+    enclosed_words = [part.strip()
+                      for i, part in enumerate(parts) if i % 2 == 1]
+
+    return enclosed_words
+
+
+def remove_enclosed_words(text):
+    # Define a regular expression pattern to match words enclosed in asterisks
+    pattern = r'\*([^*]+)\*'
+
+    # Use sub() function to replace matched patterns with an empty string
+    result = re.sub(pattern, '', text)
+
+    return result.strip()
+
+
 def process_input(user_input):
     response = ai.get_chat_response(user_input)
     # Print the bot's response
@@ -34,6 +55,7 @@ def process_input(user_input):
             image = "thinking.jpg"
         elif "excite" in expressions[0]:
             image = "smirk.jpg"
+        print("Image: ", image)
         subprocess.run(["bash", "notification.sh", image,
                         remove_enclosed_words(response)])
 
@@ -65,24 +87,3 @@ def process_input(user_input):
             process_input(user_input)
         if result.stdout and not result.stderr:
             print("stdOut: ", result.stdout)
-
-
-def extract_enclosed_word(text):
-    # Split the text by asterisks
-    parts = text.split('*')
-
-    # Filter out parts that are enclosed by asterisks
-    enclosed_words = [part.strip()
-                      for i, part in enumerate(parts) if i % 2 == 1]
-
-    return enclosed_words
-
-
-def remove_enclosed_words(text):
-    # Define a regular expression pattern to match words enclosed in asterisks
-    pattern = r'\*([^*]+)\*'
-
-    # Use sub() function to replace matched patterns with an empty string
-    result = re.sub(pattern, '', text)
-
-    return result.strip()
