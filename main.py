@@ -29,7 +29,7 @@ def main():
 
         # Get user input
         user_input = input(
-            "===============================================\nYou: ")
+            "\n===============================================\nYou: ")
 
         # Check if the user wants to exit the conversation
         if user_input.lower() == 'exit':
@@ -40,6 +40,7 @@ def main():
             process.process_input("Forget about what we talked about before")
             with open("dialogue_history.json", "w") as f:
                 json.dump([], f)
+            config.dialogue_history = []
             config.get_json_values()
         # Check if the user wants to have normal conversation
         else:

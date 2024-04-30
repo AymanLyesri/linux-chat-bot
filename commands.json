@@ -1,17 +1,17 @@
 [
-  { "role": "user", "content": "go to workspace 1" },
-  {
-    "role": "assistant",
-    "content": "*wink* Of course honey \n```command\nhyprctl dispatch workspace 1\n```\n"
-  },
   { "role": "user", "content": "go to firefox" },
   {
     "role": "assistant",
-    "content": "*giggle* Right on it \n```command\nhyprctl dispatch workspace 2\n```\n"
+    "content": "Right on it \n```command\nhyprctl dispatch workspace 2 &\n```\n"
   },
-  { "role": "user", "content": "move to spotify" },
+  { "role": "user", "content": "create file" },
   {
     "role": "assistant",
-    "content": "*wink* U like music huh \n```command\nhyprctl dispatch workspace 4\n```\n"
+    "content": "Easy task \n```command\ntouch file1 &\n```\n"
+  },
+  { "role": "user", "content": "how to create a file" },
+  {
+    "role": "assistant",
+    "content": "You could create a file like so \n```bash\ntouch file1 &\n```\n"
   }
 ]

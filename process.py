@@ -1,10 +1,19 @@
 import json
 import re
 import subprocess
+import sys
+import threading
+import time
 import config
 import ai
 import TTS
-import asyncio
+
+
+def print_with_delay(message, delay=0.01):
+    for char in message:
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        time.sleep(delay)
 
 
 def extract_enclosed_word(text):
@@ -31,48 +40,59 @@ def remove_enclosed_words(text):
 def process_input(user_input):
     response = ai.get_chat_response(user_input)
     # Print the bot's response
-    print("\nWaifu:", response)
+    # print_with_delay("\nWaifu: "+response)
+    response_thread = threading.Thread(
+        target=print_with_delay, args=("\nWaifu: "+response,))
+    response_thread.start()
+
     # Append the user's input and bot's response to the dialogue history
-    config.dialogue_history.append(
-        {"role": "user", "content": user_input})
-    config.dialogue_history.append(
-        {"role": "assistant", "content": response})
+    config.dialogue_history.extend([
+        {"role": "user", "content": user_input},
+        {"role": "assistant", "content": response}])
 
     # Write dialogue_history to dialogue_history.log as JSON
     with open("dialogue_history.json", "w") as f:
         json.dump(config.dialogue_history, f, indent=4)
 
+    # Check if the response contains an emotion
+    path = "2/"
     image = "happy.jpg"
     expressions = extract_enclosed_word(response)
     if (len(expressions) > 0):
         if "giggle" in expressions[0]:
             image = "happy.jpg"
+        elif "neutral" in expressions[0]:
+            image = "neutral.jpg"
         elif "blush" in expressions[0]:
             image = "blush.jpg"
-        elif "horny" in expressions[0]:
-            image = "horny.jpg"
         elif "shy" in expressions[0]:
             image = "thinking.jpg"
         elif "excite" in expressions[0]:
-            image = "smirk.jpg"
-        print("Image: ", image)
-        subprocess.run(["bash", "notification.sh", image,
-                        remove_enclosed_words(response)])
+            image = "excited.jpg"
+        elif "sad" in expressions[0]:
+            image = "sad.jpg"
+    subprocess.run(["bash", "notification.sh", path+image,
+                    remove_enclosed_words(response)])
 
     # Check if the response contains a command to execute
     if "```" in response:
         start, command, end = response.split("```")
-        speech = start.strip()+" " + end.strip()
+        speech = remove_enclosed_words(start.strip()+" " + end.strip())
     else:
-        speech = response
+        speech = remove_enclosed_words(response)
 
-    # TTS.speech(speech)
+    if speech != "":
+        speech_thread = threading.Thread(
+            target=TTS.speech, args=(speech,))
+        if speech_thread.is_alive():
+            print("Waiting for the previous speech to finish...")
+            # Wait for the thread to finish
+            speech_thread.join()
+        # Create a new thread to play the speech
+        speech_thread.start()
 
-    async def async_speech(speech):
-        await loop.run_in_executor(None, TTS.speech, speech)
-
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(async_speech(remove_enclosed_words(speech)))
+    # Wait for the thread to finish
+    response_thread.join()
 
     # Check if the response contains a command to execute
     if "```command" in response:
@@ -81,9 +101,11 @@ def process_input(user_input):
                                 capture_output=True, text=True)
 
         if result.stderr and not result.stdout:
-            print(f"\033[1;41m {result.stderr} \033[0m")
-            # Wait for the speech thread to finish
+            print(f"\n\033[1;41m {result.stderr} \033[0m\n")
             user_input = "I got an error : " + result.stderr
             process_input(user_input)
         if result.stdout and not result.stderr:
             print("stdOut: ", result.stdout)
+            config.dialogue_history.extend([
+                {"role": "user", "content": result.stdout},
+                {"role": "assistant", "content": "I will remember this"}])

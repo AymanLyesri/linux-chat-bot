@@ -1,4 +1,4 @@
-import subprocess
+from playsound import playsound
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
@@ -19,4 +19,5 @@ def speech(speech):
     )
 
     response.stream_to_file(speech_file_path)
-    subprocess.run(["mpg123", speech_file_path])
+    # Assuming playsound_async is an asynchronous version of playsound
+    playsound(speech_file_path)
