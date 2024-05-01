@@ -22,7 +22,7 @@ def loading_animation():
     animation_chars = ['-', '\\', '|', '/']  # Define animation characters
     while not stop_thread.is_set():
         for char in animation_chars:
-            sys.stdout.write('\rLoading ' + char)
+            sys.stdout.write('\r'+char)
             sys.stdout.flush()
             # Adjust the delay to control the speed of the animation
             time.sleep(0.1)
@@ -62,13 +62,13 @@ def addToHistory(user_input, response):
 def executeCommand(command):
     if "cd" in command:
         # remove cd from command
-        path = command.replace("cd", "").strip()
+        path = command.replace("cd ", "").strip()
         os.chdir(path)
     else:
         result = subprocess.run(command, shell=True,
                                 capture_output=True, text=True)
         if result.stderr and not result.stdout:
-            print(f"\n\033[1;41m {result.stderr} \033[0m\n")
+            print(f"\n\033[1;41m {result.stderr} \033[0m")
             addToHistory(result.stderr, "Do you want me to fix it?")
         if result.stdout and not result.stderr:
             # Assuming you want to limit to 10 lines
@@ -92,7 +92,6 @@ def process_input(user_input):
     # Clear the stop_thread event for the next loading animation
     stop_thread.clear()
 
-    # Print the bot's response
     # print_with_delay("\nWaifu: "+response)
     response_thread = threading.Thread(
         target=print_with_delay, args=("\nWaifu: "+response,))
@@ -102,12 +101,15 @@ def process_input(user_input):
 
     notification.send_notification(response)
 
-    # Check if the response contains a command to execute
-    if "```" in response:
-        start, command, end = response.split("```")
-        speech = remove_enclosed_words(start.strip()+" " + end.strip())
-    else:
-        speech = remove_enclosed_words(response)
+    # Use regular expressions to find all occurrences of "```command <command>```" in the sentence
+    commands = re.findall(
+        r"```command\n([^`]+)```", response.replace("\\`", ""))
+    # Store the commands in an array
+    commands_array = [command.strip() for command in commands]
+    # Replace all occurrences of "```command <command>```" with an empty string
+    speech = re.sub(r"```command\n([^`]+)```", "", response)
+    # Strip any leading or trailing whitespace from the remaining sentence
+    speech = speech.replace("\n", " ").strip()
 
     # Acquire the lock before starting the speech_thread
     with speech_lock:
@@ -126,31 +128,5 @@ def process_input(user_input):
 
     # Check if the response contains a command to execute
     if "```command" in response:
-        executeCommand(command)
-
-# command_blocks = response.split("```command")
-
-#     # Iterate over each command block (excluding the first block, which contains text before the first command)
-#     for block in command_blocks[1:]:
-#          # Remove leading and trailing whitespace from the block
-#          block = block.strip()
-
-#           # Extract the command from the block (up to the first newline character)
-#           command = block.split("\n", 1)[0].strip()
-
-#            if "cd" in command:
-#                 # remove cd from command
-#                 path = command.replace("cd", "").strip()
-#                 os.chdir(path)
-#             else:
-#                 result = subprocess.run(command, shell=True,
-#                                         capture_output=True, text=True)
-#                 if result.stderr and not result.stdout:
-#                     print(f"\n\033[1;41m {result.stderr} \033[0m\n")
-#                     addToHistory(result.stderr, "Do you want me to fix it?")
-#                 if result.stdout and not result.stderr:
-#                     # Assuming you want to limit to 10 lines
-#                     limited_lines = result.stdout.split('\n')[:100]
-#                     print('\n'.join(limited_lines))
-#                     addToHistory('\n'.join(limited_lines),
-#                                  "I will keep this in mind")
+        for command in commands_array:
+            executeCommand(command)

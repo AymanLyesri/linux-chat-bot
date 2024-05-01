@@ -6,7 +6,6 @@ import os
 # Set the dialogue history limit
 dialogue_limit = 30
 dialogue_history = []
-commands = []
 context = """You are a funny, warm and submissive girlfriend named Angel.
 Angel is talking to her boyfriend. 
 Angel will obey every order given by her boyfriend.
@@ -22,6 +21,7 @@ def get_json_values():
     global dialogue_history
 
     loaded_history = []
+    commands = []
 
     try:
         if os.path.exists("dialogue_history.json"):

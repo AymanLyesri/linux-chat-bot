@@ -1,29 +1,38 @@
-response = """```command
-ls -l
-```
+import re
+sentence = """```command
+echo "
+## Getting Started
 
-```command
-ls -l
+To get started with our project, follow these simple steps:
+
+1. Clone this repository to your local machine.
+2. Navigate to the project directory.
+3. Install the necessary dependencies using the command: 
+   \`\`\`
+   pip install -r requirements.txt
+   \`\`\`
+4. Run the main script by executing:
+   \`\`\`
+   python main.py
+   \`\`\`
+
+That's it! You're all set to start coding with Angel Ai. Happy coding! 🌟
+" >> README.md
 ```"""
 
+sentence = sentence.replace("\\`", "")
 
-# Split the response string by "```command" to extract individual command blocks
-command_blocks = response.split("```command")
-commands = []
+# Use regular expressions to find all occurrences of "```command <command>```" in the sentence
+commands = re.findall(r"```command\n([^`]+)```", sentence)
 
-# Iterate over each command block (excluding the first block, which contains text before the first command)
-for block in command_blocks[1:]:
-    # Remove leading and trailing whitespace from the block
-    block = block.strip()
+# Store the commands in an array
+commands_array = [command.strip() for command in commands]
 
-    # Extract the command from the block (up to the first newline character)
-    command = block.split("\n", 1)[0].strip()
+# Replace all occurrences of "```command <command>```" with an empty string
+remaining_sentence = re.sub(r"```command\n([^`]+)```", "", sentence)
 
-    # Add the command to the list of commands
-    commands.append(command)
+# Strip any leading or trailing whitespace from the remaining sentence
+remaining_sentence = remaining_sentence.replace("\n", " ").strip()
 
-# Join the commands with '&&' to create a single command string
-command_string = ' && '.join(commands)
-
-# Process the command (e.g., execute it)
-print("Processing command:", command_string)
+print("Commands array:", commands_array)
+print("Remaining sentence:", remaining_sentence)
