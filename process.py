@@ -8,6 +8,7 @@ import time
 import config
 import ai
 import TTS
+import notification
 
 
 # Define a lock
@@ -19,17 +20,6 @@ def print_with_delay(message, delay=0.01):
         sys.stdout.write(char)
         sys.stdout.flush()
         time.sleep(delay)
-
-
-def extract_enclosed_word(text):
-    # Split the text by asterisks
-    parts = text.split('*')
-
-    # Filter out parts that are enclosed by asterisks
-    enclosed_words = [part.strip()
-                      for i, part in enumerate(parts) if i % 2 == 1]
-
-    return enclosed_words
 
 
 def remove_enclosed_words(text):
@@ -63,25 +53,7 @@ def process_input(user_input):
 
     addToHistory(user_input, response)
 
-    # Check if the response contains an emotion
-    path = "2/"
-    image = "happy.jpg"
-    expressions = extract_enclosed_word(response)
-    if (len(expressions) > 0):
-        if "giggle" in expressions[0]:
-            image = "happy.jpg"
-        elif "neutral" in expressions[0]:
-            image = "neutral.jpg"
-        elif "blush" in expressions[0]:
-            image = "blush.jpg"
-        elif "shy" in expressions[0]:
-            image = "thinking.jpg"
-        elif "excite" in expressions[0]:
-            image = "excited.jpg"
-        elif "sad" in expressions[0]:
-            image = "sad.jpg"
-    subprocess.run(["bash", "notification.sh", path+image,
-                    remove_enclosed_words(response)])
+    notification.send_notification(response)
 
     # Check if the response contains a command to execute
     if "```" in response:
