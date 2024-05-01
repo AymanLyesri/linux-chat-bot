@@ -1,22 +1,29 @@
 
 import json
+import sys
+import threading
+import time
 import config
 import process
 
 
 def main():
 
-    config.get_json_values()
-
     print("Welcome to Simple ChatBot!")
     print("You can start chatting by typing your messages.")
     print("Type 'exit' to end the conversation.")
 
     while True:
+        # try:
 
         # Check if the dialogue history exceeds 10 items, remove the oldest conversations
         if len(config.dialogue_history) > config.dialogue_limit:
-            config.dialogue_history = config.dialogue_history[-config.dialogue_limit:]
+            config.dialogue_history = config.dialogue_history[config.dialogue_limit-10:]
+            # Write dialogue_history to dialogue_history.log as JSON
+            with open("dialogue_history.json", "w") as f:
+                json.dump(config.dialogue_history, f, indent=4)
+
+        config.get_json_values()
 
         # If the dialogue history is empty, add the context
         if not config.dialogue_history:
@@ -38,7 +45,8 @@ def main():
         # Check if the user wants to forget the conversation history
         elif user_input.lower() == 'forget':
             config.dialogue_history = []
-            process.process_input("Forget about what we talked about before")
+            process.process_input(
+                "Forget about what we talked about before")
             with open("dialogue_history.json", "w") as f:
                 json.dump([], f)
             config.get_json_values()
@@ -47,6 +55,10 @@ def main():
         else:
             # Get the chatbot's response
             process.process_input(user_input)
+
+        # except KeyboardInterrupt:
+        #     # Handle Ctrl+C - Print a message to inform the user
+        #     print("\nCtrl+C is disabled. Please enter 'exit' to proceed.")
 
 
 # main()
