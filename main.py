@@ -37,11 +37,12 @@ def main():
             break
         # Check if the user wants to forget the conversation history
         elif user_input.lower() == 'forget':
+            config.dialogue_history = []
             process.process_input("Forget about what we talked about before")
             with open("dialogue_history.json", "w") as f:
                 json.dump([], f)
-            config.dialogue_history = []
             config.get_json_values()
+
         # Check if the user wants to have normal conversation
         else:
             # Get the chatbot's response

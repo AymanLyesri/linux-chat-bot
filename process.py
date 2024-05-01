@@ -9,6 +9,10 @@ import ai
 import TTS
 
 
+# Define a lock
+speech_lock = threading.Lock()
+
+
 def print_with_delay(message, delay=0.01):
     for char in message:
         sys.stdout.write(char)
@@ -81,17 +85,19 @@ def process_input(user_input):
     else:
         speech = remove_enclosed_words(response)
 
-    if speech != "":
-        speech_thread = threading.Thread(
-            target=TTS.speech, args=(speech,))
-        if speech_thread.is_alive():
-            print("Waiting for the previous speech to finish...")
-            # Wait for the thread to finish
-            speech_thread.join()
-        # Create a new thread to play the speech
-        speech_thread.start()
+    # Acquire the lock before starting the speech_thread
+    with speech_lock:
+        if speech != "":
+            speech_thread = threading.Thread(
+                target=TTS.speech, args=(speech,))
+            # Wait for the previous speech_thread to finish
+            if speech_thread.is_alive():
+                print("Waiting for the previous speech to finish...")
+                speech_thread.join()
+            # Create a new thread to play the speech
+            speech_thread.start()
 
-    # Wait for the thread to finish
+    # Wait for the waifu response thread to finish
     response_thread.join()
 
     # Check if the response contains a command to execute
@@ -102,10 +108,13 @@ def process_input(user_input):
 
         if result.stderr and not result.stdout:
             print(f"\n\033[1;41m {result.stderr} \033[0m\n")
-            user_input = "I got an error : " + result.stderr
-            process_input(user_input)
+            process_input("I got an Error : " + result.stderr)
         if result.stdout and not result.stderr:
-            print("stdOut: ", result.stdout)
-            config.dialogue_history.extend([
-                {"role": "user", "content": result.stdout},
-                {"role": "assistant", "content": "I will remember this"}])
+            # Assuming you want to limit to 10 lines
+            limited_lines = result.stdout.split('\n')[:100]
+
+            print('\n'.join(limited_lines))
+            # config.dialogue_history.extend([
+            #     {"role": "user", "content": result.stdout[:1000]},
+            #     {"role": "assistant", "content": "I will remember this"}])
+            process_input("Output : " + '\n'.join(limited_lines))
