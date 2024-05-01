@@ -79,20 +79,29 @@ def process_input(user_input):
 
     # Check if the response contains a command to execute
     if "```command" in response:
-        command = command.replace("command\n", "").strip()
-        if "cd" in command:
-            # remove cd from command
-            path = command.replace("cd", "").strip()
-            os.chdir(path)
-        else:
-            result = subprocess.run(command, shell=True,
-                                    capture_output=True, text=True)
-            if result.stderr and not result.stdout:
-                print(f"\n\033[1;41m {result.stderr} \033[0m\n")
-                addToHistory(result.stderr, "Do you want me to fix it?")
-            if result.stdout and not result.stderr:
-                # Assuming you want to limit to 10 lines
-                limited_lines = result.stdout.split('\n')[:100]
-                print('\n'.join(limited_lines))
-                addToHistory('\n'.join(limited_lines),
-                             "I will keep this in mind")
+        command_blocks = response.split("```command")
+
+        # Iterate over each command block (excluding the first block, which contains text before the first command)
+        for block in command_blocks[1:]:
+            # Remove leading and trailing whitespace from the block
+            block = block.strip()
+
+            # Extract the command from the block (up to the first newline character)
+            command = block.split("\n", 1)[0].strip()
+
+            if "cd" in command:
+                # remove cd from command
+                path = command.replace("cd", "").strip()
+                os.chdir(path)
+            else:
+                result = subprocess.run(command, shell=True,
+                                        capture_output=True, text=True)
+                if result.stderr and not result.stdout:
+                    print(f"\n\033[1;41m {result.stderr} \033[0m\n")
+                    addToHistory(result.stderr, "Do you want me to fix it?")
+                if result.stdout and not result.stderr:
+                    # Assuming you want to limit to 10 lines
+                    limited_lines = result.stdout.split('\n')[:100]
+                    print('\n'.join(limited_lines))
+                    addToHistory('\n'.join(limited_lines),
+                                 "I will keep this in mind")
