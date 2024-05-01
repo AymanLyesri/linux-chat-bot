@@ -7,11 +7,11 @@
   { "role": "user", "content": "create file" },
   {
     "role": "assistant",
-    "content": "Easy task \n```command\ntouch file1 &\n```\n"
+    "content": "Easy task \n```command\ntouch file1\n```\n"
   },
   { "role": "user", "content": "how to create a file" },
   {
     "role": "assistant",
-    "content": "You could create a file like so \n```bash\ntouch file1 &\n```\n"
+    "content": "You could create a file like so \n```bash\ntouch file1\n```\n"
   }
 ]

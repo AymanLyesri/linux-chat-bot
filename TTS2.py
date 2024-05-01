@@ -1,58 +1,48 @@
-import io
 import requests
-import time
-from pydub import AudioSegment
-from pydub.playback import play
+from playsound import playsound
 
-url = "https://large-text-to-speech.p.rapidapi.com/tts"
+url = "https://tts-universal.p.rapidapi.com/tts/v1/"
 
 payload = {
-    "text": sys.arg
+    "text": "Hello, what is your name ?",
+    "tts_service": "azure",
+    "voice_indentifier": "en-US-AmberNeural"
 }
 headers = {
-    "content-type": "application/json",
+    "content-type": "application/x-www-form-urlencoded",
     "X-RapidAPI-Key": "eda5c736e8msha192a972ef3bc0bp175619jsn8694b5f19f74",
-    "X-RapidAPI-Host": "large-text-to-speech.p.rapidapi.com"
+    "X-RapidAPI-Host": "tts-universal.p.rapidapi.com"
 }
 
-# Post request to convert text to speech
-response = requests.post(url, json=payload, headers=headers)
+try:
+    # Post request to convert text to speech
+    response = requests.post(url, data=payload, headers=headers)
 
-# Print the response containing the job ID
-print(response.json())
+    # Check if the request was successful
+    if response.status_code == 200:
+        # Print the response JSON
+        print(response.json())
 
-# Extract the job ID from the response
-job_id = response.json()["id"]
+        # Get the URL of the audio file from the response JSON
+        audio_url = response.json()["result"]
 
-# Prepare the query string with the job ID
-querystring = {"id": job_id}
+        # Send a GET request to download the audio file
+        audio_response = requests.get(audio_url)
 
-# Initialize a flag to indicate if conversion is complete
-conversion_complete = False
+        # Check if the request was successful
+        if audio_response.status_code == 200:
+            # Save the audio content to a temporary file
+            with open('temp_audio.mp3', 'wb') as f:
+                f.write(audio_response.content)
 
-# Loop until conversion is complete
-while not conversion_complete:
-    # Get request to check the status of the conversion job
-    response = requests.get(url, headers=headers, params=querystring)
-
-    # Extract the status from the response
-    status = response.json()["status"]
-
-    # Print the status
-    print(f"Conversion status: {status}")
-
-    # Check if conversion is complete
-    if status == "success":
-        conversion_complete = True
+            # Play the audio file
+            playsound('temp_audio.mp3')
+        else:
+            print(
+                f"Failed to download audio file. Status code: {audio_response.status_code}")
     else:
-        # Wait for a few seconds before checking again
-        time.sleep(1)
+        print(
+            f"Failed to convert text to speech. Status code: {response.status_code}")
 
-# Download the audio file
-response = requests.get(response.json()["url"])
-
-# Load the audio file
-audio = AudioSegment.from_file(io.BytesIO(response.content))
-
-# Play the audio file
-play(audio)
+except requests.RequestException as e:
+    print(f"An error occurred: {e}")
