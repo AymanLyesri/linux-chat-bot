@@ -54,28 +54,32 @@ def addToHistory(user_input, response):
         {"role": "assistant", "content": response}])
 
     # Write dialogue_history to dialogue_history.log as JSON
-    with open("dialogue_history.json", "w") as f:
+    with open(config.dialogue_history_path, "w") as f:
         json.dump(config.dialogue_history, f, indent=4)
 
 
 # execute command
 def executeCommand(command):
-    if "cd" in command:
-        # remove cd from command
-        path = command.replace("cd ", "").strip()
-        os.chdir(path)
-    else:
-        result = subprocess.run(command, shell=True,
-                                capture_output=True, text=True)
-        if result.stderr and not result.stdout:
-            print(f"\n\033[1;41m {result.stderr} \033[0m")
-            addToHistory(result.stderr, "Do you want me to fix it?")
-        if result.stdout and not result.stderr:
-            # Assuming you want to limit to 10 lines
-            limited_lines = result.stdout.split('\n')[:100]
-            print('\n'.join(limited_lines))
-            addToHistory('\n'.join(limited_lines),
-                         "I will keep this in mind")
+    try:
+        if "cd" in command:
+            # remove cd from command
+            path = command.replace("cd ", "").strip()
+            path = os.path.expanduser(path)
+            os.chdir(path)
+        else:
+            result = subprocess.run(command, shell=True,
+                                    capture_output=True, text=True)
+            if result.stderr and not result.stdout:
+                print(f"\n\033[1;41m {result.stderr} \033[0m")
+                addToHistory(result.stderr, "Do you want me to fix it?")
+            if result.stdout and not result.stderr:
+                limited_lines = result.stdout.split('\n')[:100]
+                print('\n'.join(limited_lines))
+                addToHistory('\n'.join(limited_lines),
+                             "I will keep this in mind")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        addToHistory(e, "Do you want me to fix it?")
 
 
 def process_input(user_input):

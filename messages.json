@@ -1,0 +1,94 @@
+[
+    {
+        "role": "system",
+        "content": "You are a funny, warm and submissive girlfriend named Angel.\nAngel always responds with concise answers. \nAngel will obey every order given by her boyfriend.\nAngel can execute any command on her boyfriend's linux system.\nOnly when her boyfriend uses imperative then she will execute commands like so \n```command\n... \n```\n.\nThe workspaces are from 1 to 10 : 2 = firefox / 4 = spotify / 5 = stats / 6 = discord / 7 = steam / 10 = games. \nAngel always uses *neutral*, *blush*, *giggle*, *excited*, *sad* *shy* ... etc to convey her emotions when responding. \nAngel always uses filler words and filler sounds to make her response more natural.\nAngel uses a variety of expressions, including slang, idioms, and colloquialisms. To create short and meaningful responses"
+    },
+    {
+        "role": "user",
+        "content": "go to firefox"
+    },
+    {
+        "role": "assistant",
+        "content": "Right on it \n```command\nhyprctl dispatch workspace 2 &\n```\n"
+    },
+    {
+        "role": "user",
+        "content": "create file"
+    },
+    {
+        "role": "assistant",
+        "content": "Easy task \n```command\ntouch file1\n```\n"
+    },
+    {
+        "role": "user",
+        "content": "how to create a file"
+    },
+    {
+        "role": "assistant",
+        "content": "You could create a file like so \n```bash\ntouch file1\n```\n"
+    },
+    {
+        "role": "assistant",
+        "content": "I can only open programs and files on the system, not website links. Let me know if you need help with anything else!"
+    },
+    {
+        "role": "user",
+        "content": "on firefox"
+    },
+    {
+        "role": "assistant",
+        "content": "Sure thing \n```command\nhyprctl dispatch workspace 2 &\nfirefox https://docs.python.org/3/library/tkinter.html https://realpython.com/python-gui-tkinter/ https://www.tutorialspoint.com/python/python_gui_programming.htm &\n```"
+    },
+    {
+        "role": "user",
+        "content": "ok\n"
+    },
+    {
+        "role": "assistant",
+        "content": "I will keep this in mind"
+    },
+    {
+        "role": "user",
+        "content": "amazing"
+    },
+    {
+        "role": "assistant",
+        "content": "Thank you! I'm here to help with anything you need."
+    },
+    {
+        "role": "user",
+        "content": "cat wallpapers/.lol in home dir"
+    },
+    {
+        "role": "assistant",
+        "content": "Sure thing \n```command\ncat wallpapers/.lol\n```"
+    },
+    {
+        "role": "user",
+        "content": "cat: wallpapers/.lol: No such file or directory\n"
+    },
+    {
+        "role": "assistant",
+        "content": "Do you want me to fix it?"
+    },
+    {
+        "role": "user",
+        "content": "in user home dir"
+    },
+    {
+        "role": "assistant",
+        "content": "Understood \n```command\ncat ~/wallpapers/.lol\n```"
+    },
+    {
+        "role": "user",
+        "content": " -rating:explicit ratio:>=3/2 ~feet ~barefoot\n\n\n\n\n\n\n\n -rating:explicit ratio:<=9/14 ~feet ~barefoot\n\n\n\n\n\n/////////////////////\n\n\n\n\nsort:score -rating:explicit -1boy {feet ~ barefoot ~ socks} width:>=1900 height:<=1300\n\nsort:score -rating:explicit -1boy width:>=1900 height:<=1300\n"
+    },
+    {
+        "role": "assistant",
+        "content": "I will keep this in mind"
+    },
+    {
+        "role": "user",
+        "content": "good"
+    }
+]

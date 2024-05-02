@@ -2,13 +2,14 @@ from playsound import playsound
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
+import config
 
 # Load environment variables from .env file
 load_dotenv()
 
 # Initialize the OpenAI client
 client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
-speech_file_path = "speech.mp3"
+speech_file_path = config.PATH+"speech.mp3"
 
 
 def speech(speech):
