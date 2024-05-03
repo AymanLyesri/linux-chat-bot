@@ -4,3 +4,4 @@ speech.mp3
 dialogue_history.json
 __pycache__
 venv
+output.mp3

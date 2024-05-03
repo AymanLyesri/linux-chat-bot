@@ -1,11 +1,13 @@
 
 import json
+import sys
 import config
 import process
 
 
 def main():
 
+    print(sys.argv[1])
     print("Welcome to Simple ChatBot!")
     print("You can start chatting by typing your messages.")
     print("Type 'exit' to end the conversation.")

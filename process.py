@@ -8,6 +8,7 @@ import time
 import config
 import ai
 import TTS
+import TTS2
 import notification
 
 
@@ -62,24 +63,27 @@ def addToHistory(user_input, response):
 def executeCommand(command):
     try:
         if "cd" in command:
-            # remove cd from command
-            path = command.replace("cd ", "").strip()
-            path = os.path.expanduser(path)
-            os.chdir(path)
+            try:
+                # remove cd from command
+                path = command.replace("cd ", "").strip()
+                path = os.path.expanduser(path)
+                os.chdir(path)
+            except Exception as e:
+                print(f"An error HAS occurred: {e}")
         else:
             result = subprocess.run(command, shell=True,
                                     capture_output=True, text=True)
-            if result.stderr and not result.stdout:
-                print(f"\n\033[1;41m {result.stderr} \033[0m")
-                addToHistory(result.stderr, "Do you want me to fix it?")
+            # if result.stderr and not result.stdout:
+            #     print(f"\n\033[1;41m {result.stderr} \033[0m")
+            #     addToHistory(result.stderr, "Do you want me to fix it?")
             if result.stdout and not result.stderr:
                 limited_lines = result.stdout.split('\n')[:100]
                 print('\n'.join(limited_lines))
                 addToHistory('\n'.join(limited_lines),
                              "I will keep this in mind")
     except Exception as e:
-        print(f"An error occurred: {e}")
         addToHistory(e, "Do you want me to fix it?")
+        print(f"An error HAS occurred: {e}")
 
 
 def process_input(user_input):
@@ -108,18 +112,16 @@ def process_input(user_input):
     # Use regular expressions to find all occurrences of "```command <command>```" in the sentence
     commands = re.findall(
         r"```command\n([^`]+)```", response.replace("\\`", ""))
-    # Store the commands in an array
     commands_array = [command.strip() for command in commands]
-    # Replace all occurrences of "```command <command>```" with an empty string
     speech = re.sub(r"```command\n([^`]+)```", "", response)
-    # Strip any leading or trailing whitespace from the remaining sentence
     speech = speech.replace("\n", " ").strip()
+    speech = remove_enclosed_words(speech)
 
     # Acquire the lock before starting the speech_thread
     with speech_lock:
         if speech != "":
             speech_thread = threading.Thread(
-                target=TTS.speech, args=(speech,))
+                target=TTS2.speech2, args=(speech,))
             # Wait for the previous speech_thread to finish
             if speech_thread is not None and speech_thread.is_alive():
                 print("Waiting for the previous speech to finish...")

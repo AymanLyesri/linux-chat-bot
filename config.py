@@ -7,7 +7,7 @@ dialogue_history_path = PATH+"dialogue_history.json"
 commands_path = PATH+"commands.json"
 
 
-dialogue_limit = 15
+dialogue_limit = 16
 dialogue_history = []
 context = """You are a funny, warm and submissive girlfriend named Angel.
 Angel always responds with concise answers. 
