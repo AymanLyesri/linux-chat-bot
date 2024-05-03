@@ -25,10 +25,9 @@ def loading_animation():
         for char in animation_chars:
             sys.stdout.write('\r'+char)
             sys.stdout.flush()
-            # Adjust the delay to control the speed of the animation
             time.sleep(0.1)
-    else:
-        sys.stdout.flush()
+    sys.stdout.write('\r ')
+    sys.stdout.flush()
 
 
 def print_with_delay(message, delay=0.01):
@@ -39,12 +38,8 @@ def print_with_delay(message, delay=0.01):
 
 
 def remove_enclosed_words(text):
-    # Define a regular expression pattern to match words enclosed in asterisks
     pattern = r'\*([^*]+)\*'
-
-    # Use sub() function to replace matched patterns with an empty string
     result = re.sub(pattern, '', text)
-
     return result.strip()
 
 
@@ -69,13 +64,13 @@ def executeCommand(command):
                 path = os.path.expanduser(path)
                 os.chdir(path)
             except Exception as e:
-                print(f"An error HAS occurred: {e}")
+                print(f"An error HAS occurred while cd: {e}")
         else:
             result = subprocess.run(command, shell=True,
                                     capture_output=True, text=True)
-            # if result.stderr and not result.stdout:
-            #     print(f"\n\033[1;41m {result.stderr} \033[0m")
-            #     addToHistory(result.stderr, "Do you want me to fix it?")
+            if result.stderr and not result.stdout:
+                print(f"\n\033[1;41m {result.stderr} \033[0m")
+                addToHistory(result.stderr, "Do you want me to fix it?")
             if result.stdout and not result.stderr:
                 limited_lines = result.stdout.split('\n')[:100]
                 print('\n'.join(limited_lines))
@@ -83,7 +78,7 @@ def executeCommand(command):
                              "I will keep this in mind")
     except Exception as e:
         addToHistory(e, "Do you want me to fix it?")
-        print(f"An error HAS occurred: {e}")
+        print(f"An error HAS occurred while executing command: {e}")
 
 
 def process_input(user_input):

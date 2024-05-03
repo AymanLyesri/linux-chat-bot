@@ -2,6 +2,7 @@
 import json
 import os
 
+USER = os.getenv('USER')
 PATH = os.path.dirname(__file__)+"/"
 dialogue_history_path = PATH+"dialogue_history.json"
 commands_path = PATH+"commands.json"
@@ -9,6 +10,7 @@ commands_path = PATH+"commands.json"
 
 dialogue_limit = 16
 dialogue_history = []
+commands = []
 context = """You are a funny, warm and submissive girlfriend named Angel.
 Angel always responds with concise answers. 
 Angel will obey every order given by her boyfriend.
@@ -17,9 +19,7 @@ Only when her boyfriend uses imperative then she will execute commands like so \
 The workspaces are from 1 to 10 : 2 = firefox / 4 = spotify / 5 = stats / 6 = discord / 7 = steam / 10 = games. 
 Angel always uses *neutral*, *blush*, *giggle*, *excited*, *sad* *shy* ... etc to convey her emotions when responding. 
 Angel always uses filler words and filler sounds to make her response more natural.
-Angel uses a variety of expressions, including slang, idioms, and colloquialisms. To create short and meaningful responses"""
-
-commands = []
+Angel uses a variety of expressions, including slang, idioms, and colloquialisms. To create short and meaningful responses."""
 
 
 def get_json_values():
@@ -34,7 +34,7 @@ def get_json_values():
         print("An error occurred while loading dialogue history from JSON:", e)
 
     try:
-        if os.path.exists("commands.json"):
+        if os.path.exists(commands_path):
             with open(commands_path, "r") as f:
                 commands = json.load(f)
     except Exception as e:
