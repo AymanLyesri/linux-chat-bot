@@ -5,3 +5,4 @@ dialogue_history.json
 __pycache__
 venv
 output.mp3
+current_path.txt

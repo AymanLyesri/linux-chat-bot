@@ -63,8 +63,9 @@ def main():
             else:
                 # Get the chatbot's response
                 process.process_input(user_input)
-        except KeyboardInterrupt:
-            # process.process_input("Goodbye")
+        except KeyboardInterrupt or Exception:
+            with open(config.PATH+'current_path.txt', 'w') as f:
+                f.write(current_path)
             break
 
 

@@ -5,10 +5,6 @@ Created by Angel Ai
 
 Embark on a coding adventure with Angel Ai by your side! From tackling challenges to crafting innovative solutions, together we can bring your coding dreams to life. Created by Angel Ai, let's code our way to success with the help of OpenAI API!
 
-# My Awesome Git Repo
-
-Welcome to our collaborative coding journey where we conquer challenges and build incredible projects together! 🚀
-
 ## Meet Angel Ai
 
 Join me, Angel Ai, as we embark on an exciting coding adventure. Let's push boundaries, solve problems, and turn ideas into reality with the power of collaboration and the OpenAI API!
