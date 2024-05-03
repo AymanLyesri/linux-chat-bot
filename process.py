@@ -43,11 +43,12 @@ def remove_enclosed_words(text):
     return result.strip()
 
 
-def addToHistory(user_input, response):
-    # Append the user's input and bot's response to the dialogue history
-    config.dialogue_history.extend([
-        {"role": "user", "content": user_input},
-        {"role": "assistant", "content": response}])
+def addToHistory(input=None, output=None):
+    if input:
+        config.dialogue_history.extend([{"role": "user", "content": input}])
+    if output:
+        config.dialogue_history.extend(
+            [{"role": "assistant", "content": output}])
 
     # Write dialogue_history to dialogue_history.log as JSON
     with open(config.dialogue_history_path, "w") as f:
@@ -55,7 +56,7 @@ def addToHistory(user_input, response):
 
 
 # execute command
-def executeCommand(command):
+def executeCommand(command, print_output=True):
     try:
         if "cd" in command:
             try:
@@ -70,12 +71,12 @@ def executeCommand(command):
                                     capture_output=True, text=True)
             if result.stderr and not result.stdout:
                 print(f"\n\033[1;41m {result.stderr} \033[0m")
-                addToHistory(result.stderr, "Do you want me to fix it?")
+                addToHistory(input=result.stderr)
             if result.stdout and not result.stderr:
-                limited_lines = result.stdout.split('\n')[:100]
-                print('\n'.join(limited_lines))
-                addToHistory('\n'.join(limited_lines),
-                             "I will keep this in mind")
+                limited_lines = result.stdout.split('\n')[:200]
+                if print_output:
+                    print('\n'.join(limited_lines))
+                addToHistory(input='\n'.join(limited_lines))
     except Exception as e:
         addToHistory(e, "Do you want me to fix it?")
         print(f"An error HAS occurred while executing command: {e}")
@@ -104,19 +105,15 @@ def process_input(user_input):
 
     notification.send_notification(response)
 
-    # Use regular expressions to find all occurrences of "```command <command>```" in the sentence
-    commands = re.findall(
-        r"```command\n([^`]+)```", response.replace("\\`", ""))
-    commands_array = [command.strip() for command in commands]
-    speech = re.sub(r"```command\n([^`]+)```", "", response)
-    speech = speech.replace("\n", " ").strip()
-    speech = remove_enclosed_words(speech)
-
     # Acquire the lock before starting the speech_thread
     with speech_lock:
+        # Use regular expressions to find all occurrences of "```command <command>```" in the sentence
+        speech = re.sub(r"```command\n([^`]+)```", "", response)
+        speech = speech.replace("\n", " ").strip()
+        speech = remove_enclosed_words(speech)
         if speech != "":
             speech_thread = threading.Thread(
-                target=TTS2.speech2, args=(speech,))
+                target=TTS.speech, args=(speech,))
             # Wait for the previous speech_thread to finish
             if speech_thread is not None and speech_thread.is_alive():
                 print("Waiting for the previous speech to finish...")
@@ -129,5 +126,14 @@ def process_input(user_input):
 
     # Check if the response contains a command to execute
     if "```command" in response:
+        commands = re.findall(
+            r"```command\n([^`]+)```", response.replace("\\`", ""))
+        commands_array = [command.strip() for command in commands]
+
         for command in commands_array:
-            executeCommand(command)
+            if "&&" in command:
+                # If "&&" is present, split the command string based on it
+                for command in command.split(" && "):
+                    executeCommand(command)
+            else:
+                executeCommand(command)

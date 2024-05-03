@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from openai import OpenAI
 import config
 
+
 # Load environment variables from .env file
 load_dotenv()
 
@@ -17,7 +18,9 @@ def get_chat_response(user_input):
     # Generate a chatbot response
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
-        messages=[{"role": "system", "content": config.context}] + config.commands + config.dialogue_history + [
+        messages=[{"role": "system", "content": config.context},
+                  {"role": "user", "content": "Current directory: "+config.current_path}]
+        + config.commands + config.filesystem + config.dialogue_history + [
             {"role": "user", "content": user_input}
         ]
     )
