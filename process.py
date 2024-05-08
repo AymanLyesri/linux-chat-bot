@@ -67,8 +67,12 @@ def executeCommand(command, print_output=True):
             except Exception as e:
                 print(f"An error HAS occurred while cd: {e}")
         else:
-            result = subprocess.run(command, shell=True,
-                                    capture_output=True, text=True)
+            try:
+                result = subprocess.run(
+                    command, shell=True, capture_output=True, text=True, timeout=5)
+            except subprocess.TimeoutExpired:
+                print("The command did not complete within 5 seconds.")
+                return "Command timed out"
             if result.stderr and not result.stdout:
                 print(f"\n\033[1;41m {result.stderr} \033[0m")
                 addToHistory(input=result.stderr)
@@ -76,8 +80,6 @@ def executeCommand(command, print_output=True):
                 # limited_lines = result.stdout.split('\n')[:200]
                 if print_output:
                     print("------output: ", result.stdout)
-                # if len(result.stdout) < 5:
-                #     print("\n output too small to send to angel")
                 return result.stdout
     except Exception as e:
         addToHistory(e, "Do you want me to fix it?")
