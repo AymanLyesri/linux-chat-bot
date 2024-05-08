@@ -6,3 +6,4 @@ __pycache__
 venv
 output.mp3
 current_path.txt
+test.py

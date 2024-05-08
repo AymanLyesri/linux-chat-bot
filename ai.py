@@ -13,15 +13,21 @@ client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 
 
 def get_chat_response(user_input):
-    # print([{"role": "system", "content": config.context}] + config.commands + config.dialogue_history + [
-    #     {"role": "user", "content": user_input}])
-    # Generate a chatbot response
+    new_messages = [{"role": "system", "content": config.context}]
+    new_messages.append(
+        {"role": "user", "content": "Current directory: " + config.current_path})
+    new_messages.extend(config.filesystem)
+    new_messages.extend([
+        {**obj, "content": json.dumps(obj["content"])}
+        if isinstance(obj.get("content"), dict) else obj
+        for obj in config.commands
+    ])
+    new_messages.extend(config.dialogue_history)
+    new_messages.append({"role": "user", "content": user_input})
+
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
-        messages=[{"role": "system", "content": config.context},
-                  {"role": "user", "content": "Current directory: "+config.current_path}]
-        + config.commands + config.filesystem + config.dialogue_history + [
-            {"role": "user", "content": user_input}
-        ]
+        # response_format={"type": "json_object"},
+        messages=new_messages
     )
-    return completion.choices[0].message.content
+    return json.loads(completion.choices[0].message.content)

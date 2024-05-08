@@ -2,21 +2,41 @@
   { "role": "user", "content": "go to firefox" },
   {
     "role": "assistant",
-    "content": "Right on it \n```command\nhyprctl dispatch workspace 2\n```\n"
+    "content": {
+      "speech": "Right on it",
+      "command": "hyprctl dispatch workspace 2 &",
+      "info": "",
+      "status": "finished"
+    }
   },
   { "role": "user", "content": "create file" },
   {
     "role": "assistant",
-    "content": "Easy task \n```command\ntouch file1\n```\n"
+    "content": {
+      "speech": "Easy task",
+      "command": "touch file1",
+      "info": "",
+      "status": "finished"
+    }
   },
   { "role": "user", "content": "how to create a file" },
   {
     "role": "assistant",
-    "content": "You could create a file like so \n```bash\ntouch file1\n```\n"
+    "content": {
+      "speech": "You could create a file like so",
+      "command": "",
+      "info": "```bash\ntouch file1\n```",
+      "status": "finished"
+    }
   },
   { "role": "user", "content": "search the web for watch" },
   {
     "role": "assistant",
-    "content": "getting results \n```command\ngoogler --json 'watch'\n```\n"
+    "content": {
+      "speech": "Getting results",
+      "command": "googler --lang en --json 'watch'",
+      "info": "",
+      "status": "finished"
+    }
   }
 ]

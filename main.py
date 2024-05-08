@@ -51,8 +51,9 @@ def main():
             # Check if the user wants to have normal conversation
             else:
                 process.process_input(user_input)
-        except Exception:
-            with open(config.PATH+'config.current_path.txt', 'w') as f:
+        except Exception as e:
+            print("An error occurred while processing the input.", e)
+            with open(config.PATH+'current_path.txt', 'w') as f:
                 f.write(config.current_path)
             break
 

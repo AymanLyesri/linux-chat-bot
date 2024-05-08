@@ -73,11 +73,12 @@ def executeCommand(command, print_output=True):
                 print(f"\n\033[1;41m {result.stderr} \033[0m")
                 addToHistory(input=result.stderr)
             if result.stdout and not result.stderr:
-                limited_lines = result.stdout.split('\n')[:200]
+                # limited_lines = result.stdout.split('\n')[:200]
                 if print_output:
-                    print('\n'.join(limited_lines))
-                # addToHistory(input='\n'.join(limited_lines))
-                process_input(result.stdout)
+                    print("------output: ", result.stdout)
+                # if len(result.stdout) < 5:
+                #     print("\n output too small to send to angel")
+                return result.stdout
     except Exception as e:
         addToHistory(e, "Do you want me to fix it?")
         print(f"An error HAS occurred while executing command: {e}")
@@ -99,22 +100,19 @@ def process_input(user_input):
 
     # print_with_delay("\nWaifu: "+response)
     response_thread = threading.Thread(
-        target=print_with_delay, args=("\nWaifu: "+response,))
+        target=print_with_delay, args=("\nWaifu: " + human_readable(response),))
     response_thread.start()
 
-    addToHistory(user_input, response)
+    addToHistory(user_input, json.dumps(response))
 
-    notification.send_notification(response)
+    notification.send_notification(response["speech"])
 
     # Acquire the lock before starting the speech_thread
     with speech_lock:
         # Use regular expressions to find all occurrences of "```command <command>```" in the sentence
-        speech = re.sub(r"```command\n([^`]+)```", "", response)
-        speech = speech.replace("\n", " ").strip()
-        speech = remove_enclosed_words(speech)
-        if speech != "":
+        if response["speech"] != "":
             speech_thread = threading.Thread(
-                target=TTS.speech, args=(speech,))
+                target=TTS.speech, args=(response["speech"],))
             # Wait for the previous speech_thread to finish
             if speech_thread is not None and speech_thread.is_alive():
                 print("Waiting for the previous speech to finish...")
@@ -126,15 +124,23 @@ def process_input(user_input):
     response_thread.join()
 
     # Check if the response contains a command to execute
-    if "```command" in response:
-        commands = re.findall(
-            r"```command\n([^`]+)```", response.replace("\\`", ""))
-        commands_array = [command.strip() for command in commands]
+    if response["command"]:
+        if "&&" in response["command"]:
+            # If "&&" is present, split the command string based on it
+            for command in response["command"].split(" && "):
+                output = executeCommand(command)
+                if output and response["status"] == "awaiting":
+                    process_input("OUTPUT: " + output)
+        else:
+            output = executeCommand(response["command"])
+            if output and response["status"] == "awaiting":
+                process_input("OUTPUT: " + output)
 
-        for command in commands_array:
-            if "&&" in command:
-                # If "&&" is present, split the command string based on it
-                for command in command.split(" && "):
-                    executeCommand(command)
-            else:
-                executeCommand(command)
+
+def human_readable(json):
+    output = json["speech"]
+    if json["command"]:
+        output += "\n---Command: {}\n".format(json["command"])
+    if json["info"]:
+        output += "\n---Info: {}\n".format(json["info"])
+    return output
