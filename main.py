@@ -21,7 +21,7 @@ def get_input():
 
 def main():
 
-    print("\nWelcome to Waifu chat bot!")
+    print("\nWelcome to Angel chat bot!")
     print("You can start chatting by typing your messages.")
     print("Type 'forget' to forget the conversation.")
 

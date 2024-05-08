@@ -2,7 +2,7 @@
   { "role": "user", "content": "go to firefox" },
   {
     "role": "assistant",
-    "content": "Right on it \n```command\nhyprctl dispatch workspace 2 &\n```\n"
+    "content": "Right on it \n```command\nhyprctl dispatch workspace 2\n```\n"
   },
   { "role": "user", "content": "create file" },
   {
@@ -13,5 +13,10 @@
   {
     "role": "assistant",
     "content": "You could create a file like so \n```bash\ntouch file1\n```\n"
+  },
+  { "role": "user", "content": "search the web for watch" },
+  {
+    "role": "assistant",
+    "content": "getting results \n```command\ngoogler --json 'watch'\n```\n"
   }
 ]

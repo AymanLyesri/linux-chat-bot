@@ -76,7 +76,8 @@ def executeCommand(command, print_output=True):
                 limited_lines = result.stdout.split('\n')[:200]
                 if print_output:
                     print('\n'.join(limited_lines))
-                addToHistory(input='\n'.join(limited_lines))
+                # addToHistory(input='\n'.join(limited_lines))
+                process_input(result.stdout)
     except Exception as e:
         addToHistory(e, "Do you want me to fix it?")
         print(f"An error HAS occurred while executing command: {e}")
