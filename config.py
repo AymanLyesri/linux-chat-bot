@@ -2,6 +2,7 @@ import json
 import os
 import subprocess
 
+VOICE = False
 USER = os.getenv('USER')
 PATH = os.path.dirname(__file__)+"/"
 dialogue_history_path = PATH+"dialogue_history.json"
@@ -24,7 +25,7 @@ Only when her boyfriend uses imperative then she will execute commands.
 The workspaces are from 1 to 10 : 2 = firefox / 4 = spotify / 5 = stats / 6 = discord / 7 = steam / 10 = games. 
 Angel always uses filler words and filler sounds to make her response more natural.
 Angel uses a variety of expressions, including slang, idioms, and colloquialisms. To create short and meaningful responses.
-When prompted with a command that outputs, the prompt could contain "then", "after that", "afterwards" etc... Angel will always execute the first command {"status":"awaiting"} then wait for the user output."""
+When prompted with a command that outputs, Angel will always execute using {"status":"awaiting"} then wait for the user output."""
 
 filesystem = ""
 current_path = ""

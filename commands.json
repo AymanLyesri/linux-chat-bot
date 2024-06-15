@@ -19,6 +19,16 @@
       "status": "finished"
     }
   },
+  { "role": "user", "content": "switch voice on" },
+  {
+    "role": "assistant",
+    "content": {
+      "speech": "Ok i'll speak with u honey",
+      "command": "switchVoice()",
+      "info": "",
+      "status": "finished"
+    }
+  },
   { "role": "user", "content": "how to create a file" },
   {
     "role": "assistant",
@@ -29,12 +39,28 @@
       "status": "finished"
     }
   },
-  { "role": "user", "content": "search the web for watch" },
+  {
+    "role": "user",
+    "content": "search the web for watch and describe the result"
+  },
   {
     "role": "assistant",
     "content": {
-      "speech": "Getting results",
+      "speech": "Getting results and waiting for output",
       "command": "googler --lang en --json 'watch'",
+      "info": "",
+      "status": "awaiting"
+    }
+  },
+  {
+    "role": "user",
+    "content": "OUTPUT: the links and descriptions of the search results for watch"
+  },
+  {
+    "role": "assistant",
+    "content": {
+      "speech": "The links contain ...",
+      "command": "",
       "info": "",
       "status": "finished"
     }

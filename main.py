@@ -20,8 +20,9 @@ def get_input():
 
 
 def main():
-
+    print("\n" + "=" * 80)
     print("\nWelcome to Angel chat bot!")
+    print("Voice is disabled by default (change config.py to enable it).")
     print("You can start chatting by typing your messages.")
     print("Type 'forget' to forget the conversation.")
 

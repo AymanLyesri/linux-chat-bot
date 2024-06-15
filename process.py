@@ -55,8 +55,15 @@ def addToHistory(input=None, output=None):
         json.dump(config.dialogue_history, f, indent=4)
 
 
+def switchVoice():
+    config.VOICE = True
+
+
 # execute command
 def executeCommand(command, print_output=True):
+    if command == "switchVoice()":
+        switchVoice()
+        return
     try:
         if "cd" in command:
             try:
@@ -112,7 +119,7 @@ def process_input(user_input):
     # Acquire the lock before starting the speech_thread
     with speech_lock:
         # Use regular expressions to find all occurrences of "```command <command>```" in the sentence
-        if response["speech"] != "":
+        if response["speech"] != "" and config.VOICE:
             speech_thread = threading.Thread(
                 target=TTS.speech, args=(response["speech"],))
             # Wait for the previous speech_thread to finish
@@ -133,10 +140,14 @@ def process_input(user_input):
                 output = executeCommand(command)
                 if output and response["status"] == "awaiting":
                     process_input("OUTPUT: " + output)
+                else:
+                    addToHistory(input=output)
         else:
             output = executeCommand(response["command"])
             if output and response["status"] == "awaiting":
                 process_input("OUTPUT: " + output)
+            else:
+                addToHistory(input=output)
 
 
 def human_readable(json):

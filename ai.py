@@ -27,7 +27,7 @@ def get_chat_response(user_input):
 
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
-        # response_format={"type": "json_object"},
+        response_format={"type": "json_object"},
         messages=new_messages
     )
     return json.loads(completion.choices[0].message.content)
