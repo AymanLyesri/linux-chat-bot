@@ -8,7 +8,6 @@ import time
 import config
 import ai
 import TTS
-import TTS2
 import notification
 
 
