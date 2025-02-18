@@ -1,5 +1,5 @@
 [
-  { "role": "user", "content": "go to firefox" },
+  { "role": "user", "content": "go to browser" },
   {
     "role": "assistant",
     "content": {
